@@ -1,0 +1,4 @@
+volley_face:
+    resource: "@VolleyFaceBundle/Resources/config/routing.yml"
+    prefix:   /
+
