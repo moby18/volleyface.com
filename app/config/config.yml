@@ -67,3 +67,14 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+assetic:
+    filters:
+        less:
+            node: C:\Program Files\nodejs\node.exe
+            node_paths: [c:\Program Files\nodejs\node_modules]
+            apply_to: "\.less$"
+
+mopa_bootstrap:
+    form: ~  # Adds twig form theme  support
+    menu: ~  # enables twig helpers for menu

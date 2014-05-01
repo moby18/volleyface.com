@@ -20,7 +20,11 @@
         "sensio/generator-bundle": "~2.3",
         "incenteev/composer-parameter-handler": "~2.0",
         "mopa/bootstrap-bundle": "3.*@dev",
-        "twbs/bootstrap": "~3.0"
+        "twbs/bootstrap": "~3.0",
+        "knplabs/knp-paginator-bundle": "~2.4",
+        "knplabs/knp-menu-bundle": "~1.1",
+        "knplabs/knp-menu": "~1.1",
+        "craue/formflow-bundle": "~2.1"
     },
     "scripts": {
         "post-install-cmd": [
