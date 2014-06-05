@@ -1,0 +1,267 @@
+{% set title = title|default('Home') %}
+{% set host = app.request.getSchemeAndHttpHost() %}
+{% set route = app.request.attributes.get('_route') %}
+{% if route is not empty %}{% set full_url = url(route, app.request.attributes.get('_route_params')) %}{% endif %}
+{% set page_image = page_image|default(asset('bundles/app/images/logo.png')) %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block meta %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="{{ block('meta_keywords') }}" />
+        <meta name="description" content="{{ block('meta_description') }}" />
+
+        {% block facebook_meta %}
+        <meta property="og:site_name" content="World Compassion Fellowship" />
+        <meta property="og:title" content="{{ title }}" />
+        <meta property="og:url" content="{{ full_url }}" />
+        <meta property="og:image" content="{{ host ~ page_image|apply_filter('facebook_thumb') }}" />
+        <meta property="og:type" content="website" />
+    {% endblock %}
+
+        {% block twitter_meta %}
+        <meta name="twitter:site" content="WCFellowshipOrg" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="{{ title }}" />
+        <meta name="twitter:url" content="{{ full_url }}" />
+        <meta name="twitter:description" content="{{ block('meta_description') }}" />
+        <meta name="twitter:image" content="{{ host ~ page_image }}" />
+    {% endblock %}
+    {% endblock %}
+
+    <title>{{ title }}</title>
+
+    {% block head_scripts %}
+        <script src="{{ asset('bundles/app/vendors/modernizr.min.js') }}"></script>
+        <script src="//use.typekit.net/yvj2kxm.js"></script>
+        <script type="text/javascript">try {
+                Typekit.load();
+            } catch (e) {
+            }
+        </script>
+
+        <!--[if lt IE 9]>
+            <script src="{{ asset('bundles/app/vendors/html5shiv.js') }}"></script>
+            <script src="{{ asset('bundles/app/vendors/respond.min.js') }}"></script>
+        <![endif]-->
+    {% endblock %}
+
+    {% block styles %}
+        <link href="{{ asset('bundles/app/vendors/jquery-ui/css/redmond/jquery-ui-1.10.3.custom.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/app/css/style.css') }}" rel="stylesheet" />
+
+        <!--[if lt IE 9]>
+            <link href="{{ asset('bundles/app/css/ie.css') }}" rel="stylesheet" type="text/css" />
+        <![endif]-->
+    {% endblock %}
+
+    <link href="{{ asset('bundles/app/images/favicon.png') }}" rel="shortcut icon">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <header class="row">
+                <div id="logo" class="box col-lg-3 col-md-3">
+                    <a href="{{ path('homepage') }}">
+                        <img src="{{ asset('bundles/app/images/logo.png') }}" alt="" />
+                    </a>
+                </div>
+
+                <div class="col-lg-9 col-md-9">
+                    <div class="row">
+                        <div id="account-links" class="box col-md-6 col-sm-12 text-right">
+                            {% if is_granted('ROLE_USER') %}
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a href="{{ path('app_manage_index') }}">Dashboard</a> |
+                                {% endif %}
+
+                                <a href="{{ path('site_account_giving_history') }}">My Account</a> |
+                                <a href="{{ path('fos_user_security_logout') }}">Logout</a>
+                            {% else %}
+                                <a href="{{ path('fos_user_security_login') }}">My Account</a> |
+                                <a href="{{ path('site_registration') }}">Create Account</a>
+                            {% endif %}
+
+                            | <a href="{{ path('app_payments_donate', {'type': 'general', 'slug': 'where-most-needed'}) }}">Donate</a>
+                        </div>
+
+                        <div id="search" class="box col-md-6 col-sm-12 text-right">
+                            <div class="input-group col-md-12 col-sm-4">
+                                <form action="{{ path('site_search') }}" method="get" class="form-inline" role="form">
+                                    <div class="input-group">
+                                        <input type="text" name="search" value="{{ term|default }}" placeholder="Enter keywords..." class="form-control input-small">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-blue" type="submit">Search</button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="box col-lg-12">
+                            <a id="touch-menu" class="mobile-menu" href="#">
+                                <span class="glyphicon glyphicon-align-justify"></span> Menu
+                            </a>
+
+                            <nav>
+                                <ul class="menu">
+                                    <li>
+                                        <a href="#">About WCF</a>
+
+                                        <ul class="sub-menu">
+                                            <li><a href="{{ path('site_mission_statement') }}">Mission & Values</a></li>
+                                            <li><a href="{{ path('site_about') }}">Advisory Board & Staff</a></li>
+                                            <li><a href="{{ path('site_financial_accountability') }}">Financial Accountability</a></li>
+                                            <li><a href="{{ path('site_blog_index') }}">Blog</a></li>
+                                            <li><a href="{{ path('site_contact') }}">Contact Us</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{{ path('site_what_we_do') }}">What We Do</a></li>
+                                    <li><a href="{{ path('site_why_we_help') }}">Why We Help</a></li>
+                                    <li>
+                                        <a href="#">Our Projects</a>
+
+                                        <ul class="sub-menu">
+                                            <li><a href="{{ path('site_medical') }}">Medical</a></li>
+                                            <li><a href="{{ path('site_humanitarian') }}">Humanitarian</a></li>
+                                            <li><a href="{{ path('site_development') }}">Development</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    <div class="wrapper actions">
+        <div class="container">
+            <div class="row">
+                <div id="subscribe" class="box col-sm-4">
+                    <div class="input-group">
+                        <input type="email" name="email" value="" placeholder="Enter your email" class="form-control" id="subscribe-email">
+                        <span class="input-group-btn">
+                            <button class="btn btn-blue" type="button" id="subscribe-button">Subscribe</button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="box col-sm-4">
+                    <div id="footer-info"></div>
+                </div>
+
+                <div id="social" class="box col-sm-4">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper footer">
+        <div class="container">
+            <div class="row">
+                <div class="box col-lg-3 col-md-3">
+
+                </div>
+
+                <div class="box col-lg-9 col-md-9 text-right">
+                    <div>
+                        &copy; 2000, {{ 'now'|date('Y') }} World Compassion Fellowship. All Rights Reserved | 646-535-2344
+                    </div>
+                    <div>
+                        <a href="{{ path('site_terms_and_conditions') }}">Privacy Statement and Conditions of Use</a> |
+                        <a href="{{ path('site_sitemap') }}">Site Map</a> |
+                        <a href="{{ path('site_faq') }}">General FAQ</a>
+                    </div>
+                    <div>
+                        World Compassion Fellowship, Inc. is a registered 501 (c)(3) nonprofit organization.
+                    </div>
+                    <div>
+                        All donations in the United States are tax-deductible in full or part.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="visible-lg visible-md" style="height: 50px;"></div>
+
+    {% block scripts %}
+        <script src="{{ asset('bundles/app/vendors/jquery.min.js') }}"></script>
+        <script src="{{ asset('bundles/app/vendors/bootstrap/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('bundles/app/vendors/jquery-ui/js/jquery-ui-1.10.3.custom.min.js') }}"></script>
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+        <script src="{{ asset('bundles/app/vendors/jquery.responsiveVideo.js') }}"></script>
+        <script src="{{ asset('bundles/app/scripts/app.js') }}"></script>
+
+        {% if app.environment == 'prod' %}
+        <script type="text/javascript">
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r;
+                    i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+                    a = s.createElement(o),
+                            m = s.getElementsByTagName(o)[0];
+                    a.async = 1;
+                    a.src = g;
+                    m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+                ga('create', 'UA-45538044-1', 'wcfellowship.com');
+                ga('send', 'pageview');
+            </script>
+        {% endif %}
+
+        {% if hide_share|default(false) != true %}
+        <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-528289c5559d9587"></script>
+        <script type="text/javascript">
+                var addthis_config = {
+                    'ui_language': 'en'
+                };
+
+                addthis.layers({
+                    'theme':       'transparent',
+                    'share':       {
+                        'position':             'left',
+                        'numPreferredServices': 5
+                    },
+                    'whatsnext':   {
+                        'mobile':  false,
+                        'desktop': false
+                    },
+                    'recommended': {
+                        'mobile':  false,
+                        'desktop': false
+                    }
+                });
+
+                var $buoop = {};
+
+                $buoop.ol = window.onload;
+                window.onload = function () {
+                    try {
+                        if ($buoop.ol) $buoop.ol();
+                    } catch (e) {
+                    }
+                    var e = document.createElement("script");
+                    e.setAttribute("type", "text/javascript");
+                    e.setAttribute("src", "//browser-update.org/update.js");
+                    document.body.appendChild(e);
+                }
+
+                $('body').responsiveVideo();
+            </script>
+        {% endif %}
+    {% endblock %}
+</body>
+</html>

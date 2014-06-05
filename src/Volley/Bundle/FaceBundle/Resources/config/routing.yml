@@ -1,7 +1,15 @@
 volley_face_homepage:
-    pattern:  /hello/{name}
+    pattern:  /
     defaults: { _controller: VolleyFaceBundle:Default:index }
 
 volley_face_admin:
     resource: "@VolleyFaceBundle/Resources/config/routing/admin.yml"
     prefix:   /admin
+
+VolleyFaceBundle_player:
+    resource: "@VolleyFaceBundle/Resources/config/routing/player.yml"
+    prefix:   /player
+
+VolleyFaceBundle_category:
+    resource: "@VolleyFaceBundle/Resources/config/routing/category.yml"
+    prefix:   /category
