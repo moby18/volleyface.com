@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CategoryType extends AbstractType
+class PostType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -15,9 +15,24 @@ class CategoryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
+            ->add('title')
             ->add('slug')
-            ->add('parent')
+            ->add('text')
+            ->add('state')
+            ->add('created')
+            ->add('published')
+            ->add('content')
+            ->add('createdBy')
+            ->add('modifiedBy')
+            ->add('source')
+            ->add('ordering')
+            ->add('metakey')
+            ->add('metadescr')
+            ->add('hits')
+            ->add('metadata')
+            ->add('featured')
+            ->add('language')
+            ->add('category')
         ;
     }
     
@@ -27,7 +42,7 @@ class CategoryType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Volley\Bundle\FaceBundle\Entity\Category'
+            'data_class' => 'Volley\Bundle\FaceBundle\Entity\Post'
         ));
     }
 
@@ -36,6 +51,6 @@ class CategoryType extends AbstractType
      */
     public function getName()
     {
-        return 'volley_bundle_facebundle_category';
+        return 'volley_bundle_facebundle_post';
     }
 }

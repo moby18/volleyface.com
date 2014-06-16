@@ -13,3 +13,7 @@ VolleyFaceBundle_player:
 VolleyFaceBundle_category:
     resource: "@VolleyFaceBundle/Resources/config/routing/category.yml"
     prefix:   /category
+
+VolleyFaceBundle_post:
+    resource: "@VolleyFaceBundle/Resources/config/routing/post.yml"
+    prefix:   /post

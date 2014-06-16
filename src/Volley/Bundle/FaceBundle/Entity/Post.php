@@ -3,27 +3,33 @@
 namespace Volley\Bundle\FaceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping\Id;
 
 /**
  * Post
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Volley\Bundle\FaceBundle\Entity\PostRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Post
 {
     /**
      * @var integer
      *
+     * @Gedmo\Slug(fields={"title"}, updatable=false, separator="_")
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+
      */
     private $id;
 
     /**
      * @var string
      *
+     * @Gedmo\Translatable
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
@@ -31,9 +37,10 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="alias", type="string", length=255)
+     * @Gedmo\Slug(fields={"title","id"})
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
      */
-    private $alias;
+    private $slug;
 
     /**
      * @var string
@@ -50,11 +57,37 @@ class Post
     private $state;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="category", type="string", length=255)
+     * @Gedmo\SortableGroup
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="posts")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
+
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @Doctrine\ORM\Mapping\Column(type="datetime")
+     */
+    private $created;
+
+    /**
+     * @Gedmo\Timestampable(on="change", field="status.title", value="Published")
+     * @Doctrine\ORM\Mapping\Column(type="date")
+     */
+    private $published;
+
+    /**
+     * @Gedmo\Versioned
+     * @Doctrine\ORM\Mapping\Column(type="text")
+     */
+    private $content;
+
+    /**
+     * @Gedmo\Versioned
+     * @Doctrine\ORM\Mapping\ManyToOne(targetEntity="Article", inversedBy="comments")
+     */
+//    private $article;
 
     /**
      * @var string
@@ -80,7 +113,8 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="ordering", type="string", length=255)
+     * @Gedmo\SortablePosition
+     * @ORM\Column(name="ordering", type="integer")
      */
     private $ordering;
 
@@ -480,5 +514,97 @@ class Post
     public function getLanguage()
     {
         return $this->language;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Post
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     * @return Post
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime 
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * Set published
+     *
+     * @param \DateTime $published
+     * @return Post
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    /**
+     * Get published
+     *
+     * @return \DateTime 
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * Set content
+     *
+     * @param string $content
+     * @return Post
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * Get content
+     *
+     * @return string 
+     */
+    public function getContent()
+    {
+        return $this->content;
     }
 }

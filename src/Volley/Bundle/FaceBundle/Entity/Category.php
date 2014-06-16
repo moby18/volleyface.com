@@ -3,6 +3,7 @@
 namespace Volley\Bundle\FaceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Category
@@ -31,9 +32,24 @@ class Category
     /**
      * @var string
      *
-     * @ORM\Column(name="parent", type="string", length=255)
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     */
+    private $slug;
+
+    /**
+     * @var string
+     *
+     * @Gedmo\TreeParent
+     * @Doctrine\ORM\Mapping\ManyToOne(targetEntity="Category")
+     * @Doctrine\ORM\Mapping\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $parent;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="category")
+     */
+    protected $posts;
 
 
     /**
@@ -90,5 +106,73 @@ class Category
     public function getParent()
     {
         return $this->parent;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Category
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Add posts
+     *
+     * @param \Volley\Bundle\FaceBundle\Entity\Post $posts
+     * @return Category
+     */
+    public function addPost(\Volley\Bundle\FaceBundle\Entity\Post $posts)
+    {
+        $this->posts[] = $posts;
+
+        return $this;
+    }
+
+    /**
+     * Remove posts
+     *
+     * @param \Volley\Bundle\FaceBundle\Entity\Post $posts
+     */
+    public function removePost(\Volley\Bundle\FaceBundle\Entity\Post $posts)
+    {
+        $this->posts->removeElement($posts);
+    }
+
+    /**
+     * Get posts
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }
