@@ -17,3 +17,20 @@ VolleyFaceBundle_category:
 VolleyFaceBundle_post:
     resource: "@VolleyFaceBundle/Resources/config/routing/post.yml"
     prefix:   /post
+
+VolleyFaceBundle_season:
+    resource: "@VolleyFaceBundle/Resources/config/routing/season.yml"
+    prefix:   /season
+
+VolleyFaceBundle_tournament:
+    resource: "@VolleyFaceBundle/Resources/config/routing/tournament.yml"
+    prefix:   /tournament
+
+VolleyFaceBundle_team:
+    resource: "@VolleyFaceBundle/Resources/config/routing/team.yml"
+    prefix:   /team
+
+VolleyFaceBundle_game:
+    resource: "@VolleyFaceBundle/Resources/config/routing/game.yml"
+    prefix:   /game
+
