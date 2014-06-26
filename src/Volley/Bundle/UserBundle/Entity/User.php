@@ -2,14 +2,16 @@
 
 namespace Volley\Bundle\UserBundle\Entity;
 
-use FOS\UserBundle\Model\User as BaseUser;
+use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * User
  *
  * @ORM\Table(name="fos_user")
- * @ORM\Entity(repositoryClass="Volley\Bundle\UserBundle\Entity\UserRepository")
+ * @ORM\Entity()
  */
 class User extends BaseUser
 {
@@ -22,6 +24,11 @@ class User extends BaseUser
      */
     protected $id;
 
+    public function __construct()
+    {
+        parent::__construct();
+        // your own logic
+    }
 
     /**
      * Get id
@@ -31,11 +38,5 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
-    }
-
-    public function __construct()
-    {
-        parent::__construct();
-        // your own logic
     }
 }

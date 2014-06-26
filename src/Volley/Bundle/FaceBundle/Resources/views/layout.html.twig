@@ -6,265 +6,370 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     {% block meta %}
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <meta name="keywords" content="{{ block('meta_keywords') }}" />
         <meta name="description" content="{{ block('meta_description') }}" />
+        <meta name="author" content="">
 
         {% block facebook_meta %}
-        <meta property="og:site_name" content="World Compassion Fellowship" />
-        <meta property="og:title" content="{{ title }}" />
-        <meta property="og:url" content="{{ full_url }}" />
-        {#<meta property="og:image" content="{{ host ~ page_image|apply_filter('facebook_thumb') }}" />#}
-        <meta property="og:type" content="website" />
-    {% endblock %}
+            <meta property="og:site_name" content="World Compassion Fellowship" />
+            <meta property="og:title" content="{{ title }}" />
+            <meta property="og:url" content="{{ full_url }}" />
+            {#<meta property="og:image" content="{{ host ~ page_image|apply_filter('facebook_thumb') }}" />#}
+            <meta property="og:type" content="website" />
+        {% endblock %}
 
         {% block twitter_meta %}
-        <meta name="twitter:site" content="WCFellowshipOrg" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="{{ title }}" />
-        <meta name="twitter:url" content="{{ full_url }}" />
-        <meta name="twitter:description" content="{{ block('meta_description') }}" />
-        <meta name="twitter:image" content="{{ host ~ page_image }}" />
-    {% endblock %}
+            <meta name="twitter:site" content="WCFellowshipOrg" />
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:title" content="{{ title }}" />
+            <meta name="twitter:url" content="{{ full_url }}" />
+            <meta name="twitter:description" content="{{ block('meta_description') }}" />
+            <meta name="twitter:image" content="{{ host ~ page_image }}" />
+        {% endblock %}
     {% endblock %}
 
     <title>{{ title }}</title>
 
     {% block head_scripts %}
-        <script src="{{ asset('bundles/app/vendors/modernizr.min.js') }}"></script>
-        <script src="//use.typekit.net/yvj2kxm.js"></script>
-        <script type="text/javascript">try {
-                Typekit.load();
-            } catch (e) {
-            }
-        </script>
-
+        <!-- IE8 support for HTML5 elements and media queries -->
         <!--[if lt IE 9]>
-            <script src="{{ asset('bundles/app/vendors/html5shiv.js') }}"></script>
-            <script src="{{ asset('bundles/app/vendors/respond.min.js') }}"></script>
+        <script src="{{ asset('bundles/volleyface/font-awesome/js/html5shiv.js') }}"></script>
+        <script src="{{ asset('bundles/volleyface/font-awesome/js/respond.min.js') }}"></script>
         <![endif]-->
     {% endblock %}
 
+    <link href="{{ asset('bundles/volleyface/images/favicon.png') }}" rel="shortcut icon">
+
+    <!-- Bootstrap Core CSS -->
     {% block styles %}
-        <link href="{{ asset('bundles/app/vendors/jquery-ui/css/redmond/jquery-ui-1.10.3.custom.min.css') }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('bundles/app/css/style.css') }}" rel="stylesheet" />
+        <link href="{{ asset('bundles/volleyface/css/bootstrap.css') }}" rel="stylesheet">
+        {#<link href="{{ asset('bundles/volleyface/css/freelancer.css') }}" rel="stylesheet" type="text/css">#}
+        <link href="{{ asset('bundles/volleyface/css/modern-business.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('bundles/volleyface/css/styles.css') }}" rel="stylesheet">
 
         <!--[if lt IE 9]>
-            <link href="{{ asset('bundles/app/css/ie.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/volleyface/css/ie.css') }}" rel="stylesheet" type="text/css" />
         <![endif]-->
     {% endblock %}
 
-    <link href="{{ asset('bundles/app/images/favicon.png') }}" rel="shortcut icon">
 
+    <!-- Fonts -->
+    <link href="{{ asset('bundles/volleyface/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
 </head>
+
 <body>
-    <div class="wrapper">
-        <div class="container">
-            <header class="row">
-                <div id="logo" class="box col-lg-3 col-md-3">
-                    {#<a href="{{ path('homepage') }}">#}
-                        {#<img src="{{ asset('bundles/app/images/logo.png') }}" alt="" />#}
-                    {#</a>#}
-                </div>
 
-                <div class="col-lg-9 col-md-9">
-                    <div class="row">
-                        <div id="account-links" class="box col-md-6 col-sm-12 text-right">
-                            {% if is_granted('ROLE_USER') %}
-                                {% if is_granted('ROLE_ADMIN') %}
-                                    <a href="{{ path('app_manage_index') }}">Dashboard</a> |
-                                {% endif %}
-
-                                <a href="{{ path('site_account_giving_history') }}">My Account</a> |
-                                <a href="{{ path('fos_user_security_logout') }}">Logout</a>
-                            {% else %}
-                                <a href="{{ path('fos_user_security_login') }}">My Account</a> |
-                                {#<a href="{{ path('site_registration') }}">Create Account</a>#}
-                            {% endif %}
-
-                            {#| <a href="{{ path('app_payments_donate', {'type': 'general', 'slug': 'where-most-needed'}) }}">Donate</a>#}
-                        </div>
-
-                        <div id="search" class="box col-md-6 col-sm-12 text-right">
-                            <div class="input-group col-md-12 col-sm-4">
-                                {#<form action="{{ path('site_search') }}" method="get" class="form-inline" role="form">#}
-                                <form action="" method="get" class="form-inline" role="form">
-                                    <div class="input-group">
-                                        <input type="text" name="search" value="{{ term|default }}" placeholder="Enter keywords..." class="form-control input-small">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-blue" type="submit">Search</button>
-                                        </span>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="box col-lg-12">
-                            <a id="touch-menu" class="mobile-menu" href="#">
-                                <span class="glyphicon glyphicon-align-justify"></span> Menu
-                            </a>
-
-                            <nav>
-                                <ul class="menu">
-                                    <li>
-                                        <a href="#">About WCF</a>
-
-                                        <ul class="sub-menu">
-                                            {#<li><a href="{{ path('site_mission_statement') }}">Mission & Values</a></li>#}
-                                            {#<li><a href="{{ path('site_about') }}">Advisory Board & Staff</a></li>#}
-                                            {#<li><a href="{{ path('site_financial_accountability') }}">Financial Accountability</a></li>#}
-                                            {#<li><a href="{{ path('site_blog_index') }}">Blog</a></li>#}
-                                            {#<li><a href="{{ path('site_contact') }}">Contact Us</a></li>#}
-                                        </ul>
-                                    </li>
-                                    {#<li><a href="{{ path('site_what_we_do') }}">What We Do</a></li>#}
-                                    {#<li><a href="{{ path('site_why_we_help') }}">Why We Help</a></li>#}
-                                    <li>
-                                        <a href="#">Our Projects</a>
-
-                                        <ul class="sub-menu">
-                                            {#<li><a href="{{ path('site_medical') }}">Medical</a></li>#}
-                                            {#<li><a href="{{ path('site_humanitarian') }}">Humanitarian</a></li>#}
-                                            {#<li><a href="{{ path('site_development') }}">Development</a></li>#}
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
-            {% block content %}{% endblock %}
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
+            <a class="navbar-brand" href="index.html">Modern Business</a>
         </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="about.html">About</a>
+                </li>
+                <li><a href="services.html">Services</a>
+                </li>
+                <li><a href="contact.php">Contact</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="portfolio-1-col.html">1 Column Portfolio</a>
+                        </li>
+                        <li><a href="portfolio-2-col.html">2 Column Portfolio</a>
+                        </li>
+                        <li><a href="portfolio-3-col.html">3 Column Portfolio</a>
+                        </li>
+                        <li><a href="portfolio-4-col.html">4 Column Portfolio</a>
+                        </li>
+                        <li><a href="portfolio-item.html">Single Portfolio Item</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="blog-home-1.html">Blog Home 1</a>
+                        </li>
+                        <li><a href="blog-home-2.html">Blog Home 2</a>
+                        </li>
+                        <li><a href="blog-post.html">Blog Post</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="full-width.html">Full Width Page</a>
+                        </li>
+                        <li><a href="sidebar.html">Sidebar Page</a>
+                        </li>
+                        <li><a href="faq.html">FAQ</a>
+                        </li>
+                        <li><a href="404.html">404</a>
+                        </li>
+                        <li><a href="pricing.html">Pricing Table</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
     </div>
+    <!-- /.container -->
+</nav>
 
-    <div class="wrapper actions">
-        <div class="container">
-            <div class="row">
-                <div id="subscribe" class="box col-sm-4">
-                    <div class="input-group">
-                        <input type="email" name="email" value="" placeholder="Enter your email" class="form-control" id="subscribe-email">
-                        <span class="input-group-btn">
-                            <button class="btn btn-blue" type="button" id="subscribe-button">Subscribe</button>
-                        </span>
-                    </div>
-                </div>
+<div id="myCarousel" class="carousel slide">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
 
-                <div class="box col-sm-4">
-                    <div id="footer-info"></div>
-                </div>
-
-                <div id="social" class="box col-sm-4">
-
-                </div>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide One');"></div>
+            <div class="carousel-caption">
+                <h1>Modern Business - A Bootstrap 3 Template</h1>
+            </div>
+        </div>
+        <div class="item">
+            <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Two');"></div>
+            <div class="carousel-caption">
+                <h1>Ready to Style &amp; Add Content</h1>
+            </div>
+        </div>
+        <div class="item">
+            <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Three');"></div>
+            <div class="carousel-caption">
+                <h1>Additional Layout Options at <a href="http://startbootstrap.com">http://startbootstrap.com</a>
+                </h1>
             </div>
         </div>
     </div>
 
-    <div class="wrapper footer">
-        <div class="container">
-            <div class="row">
-                <div class="box col-lg-3 col-md-3">
+    <!-- Controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="icon-prev"></span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="icon-next"></span>
+    </a>
+</div>
 
-                </div>
+{% block content %}
+{% endblock %}
 
-                <div class="box col-lg-9 col-md-9 text-right">
-                    <div>
-                        &copy; 2000, {{ 'now'|date('Y') }} World Compassion Fellowship. All Rights Reserved | 646-535-2344
-                    </div>
-                    <div>
-                        {#<a href="{{ path('site_terms_and_conditions') }}">Privacy Statement and Conditions of Use</a> |#}
-                        {#<a href="{{ path('site_sitemap') }}">Site Map</a> |#}
-                        {#<a href="{{ path('site_faq') }}">General FAQ</a>#}
-                    </div>
-                    <div>
-                        World Compassion Fellowship, Inc. is a registered 501 (c)(3) nonprofit organization.
-                    </div>
-                    <div>
-                        All donations in the United States are tax-deductible in full or part.
-                    </div>
-                </div>
+<div class="section">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-4 col-md-4">
+                <h3><i class="fa fa-check-circle"></i> Bootstrap 3 Built</h3>
+                <p>The 'Modern Business' website template by <a href="http://startbootstrap.com">Start Bootstrap</a> is built with <a href="http://getbootstrap.com">Bootstrap 3</a>. Make sure you're up to date with latest Bootstrap documentation!</p>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <h3><i class="fa fa-pencil"></i> Ready to Style &amp; Edit</h3>
+                <p>You're ready to go with this pre-built page structure, now all you need to do is add your own custom stylings! You can see some free themes over at <a href="http://bootswatch.com">Bootswatch</a>, or come up with your own using <a href="http://getbootstrap.com/customize/">the Bootstrap customizer</a>!</p>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <h3><i class="fa fa-folder-open"></i> Many Page Options</h3>
+                <p>This template features many common pages that you might see on a business website. Pages include: about, contact, portfolio variations, blog, pricing, FAQ, 404, services, and general multi-purpose pages.</p>
             </div>
         </div>
+        <!-- /.row -->
+
     </div>
+    <!-- /.container -->
 
-    <div class="visible-lg visible-md" style="height: 50px;"></div>
+</div>
+<!-- /.section -->
 
-    {% block scripts %}
-        <script src="{{ asset('bundles/app/vendors/jquery.min.js') }}"></script>
-        <script src="{{ asset('bundles/app/vendors/bootstrap/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('bundles/app/vendors/jquery-ui/js/jquery-ui-1.10.3.custom.min.js') }}"></script>
-        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-        <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
-        <script src="{{ asset('bundles/app/vendors/jquery.responsiveVideo.js') }}"></script>
-        <script src="{{ asset('bundles/app/scripts/app.js') }}"></script>
+<div class="section-colored text-center">
 
-        {% if app.environment == 'prod' %}
-        <script type="text/javascript">
-                (function (i, s, o, g, r, a, m) {
-                    i['GoogleAnalyticsObject'] = r;
-                    i[r] = i[r] || function () {
-                        (i[r].q = i[r].q || []).push(arguments)
-                    }, i[r].l = 1 * new Date();
-                    a = s.createElement(o),
-                            m = s.getElementsByTagName(o)[0];
-                    a.async = 1;
-                    a.src = g;
-                    m.parentNode.insertBefore(a, m)
-                })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    <div class="container">
 
-                ga('create', 'UA-45538044-1', 'wcfellowship.com');
-                ga('send', 'pageview');
-            </script>
-        {% endif %}
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Modern Business: A Clean &amp; Simple Full Website Template by Start Bootstrap</h2>
+                <p>A complete website design featuring various single page templates from Start Bootstraps library of free HTML starter templates.</p>
+                <hr>
+            </div>
+        </div>
+        <!-- /.row -->
 
-        {% if hide_share|default(false) != true %}
-        <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-528289c5559d9587"></script>
-        <script type="text/javascript">
-                var addthis_config = {
-                    'ui_language': 'en'
-                };
+    </div>
+    <!-- /.container -->
 
-                addthis.layers({
-                    'theme':       'transparent',
-                    'share':       {
-                        'position':             'left',
-                        'numPreferredServices': 5
-                    },
-                    'whatsnext':   {
-                        'mobile':  false,
-                        'desktop': false
-                    },
-                    'recommended': {
-                        'mobile':  false,
-                        'desktop': false
-                    }
-                });
+</div>
+<!-- /.section-colored -->
 
-                var $buoop = {};
+<div class="section">
 
-                $buoop.ol = window.onload;
-                window.onload = function () {
-                    try {
-                        if ($buoop.ol) $buoop.ol();
-                    } catch (e) {
-                    }
-                    var e = document.createElement("script");
-                    e.setAttribute("type", "text/javascript");
-                    e.setAttribute("src", "//browser-update.org/update.js");
-                    document.body.appendChild(e);
-                }
+    <div class="container">
 
-                $('body').responsiveVideo();
-            </script>
-        {% endif %}
-    {% endblock %}
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Display Some Work on the Home Page Portfolio</h2>
+                <hr>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450">
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450">
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450">
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450">
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450">
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450">
+                </a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+</div>
+<!-- /.section -->
+
+<div class="section-colored">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <h2>Modern Business Features Include:</h2>
+                <ul>
+                    <li>Bootstrap 3 Framework</li>
+                    <li>Mobile Responsive Design</li>
+                    <li>Predefined File Paths</li>
+                    <li>Working PHP Contact Page</li>
+                    <li>Minimal Custom CSS Styles</li>
+                    <li>Unstyled: Add Your Own Style and Content!</li>
+                    <li>Font-Awesome fonts come pre-installed!</li>
+                    <li>100% <strong>Free</strong> to Use</li>
+                    <li>Open Source: Use for any project, private or commercial!</li>
+                </ul>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <img class="img-responsive" src="http://placehold.it/700x450/ffffff/cccccc">
+            </div>
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+</div>
+<!-- /.section-colored -->
+
+<div class="section">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <img class="img-responsive" src="http://placehold.it/700x450">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <h2>Modern Business Features Include:</h2>
+                <ul>
+                    <li>Bootstrap 3 Framework</li>
+                    <li>Mobile Responsive Design</li>
+                    <li>Predefined File Paths</li>
+                    <li>Working PHP Contact Page</li>
+                    <li>Minimal Custom CSS Styles</li>
+                    <li>Unstyled: Add Your Own Style and Content!</li>
+                    <li>Font-Awesome fonts come pre-installed!</li>
+                    <li>100% <strong>Free</strong> to Use</li>
+                    <li>Open Source: Use for any project, private or commercial!</li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+</div>
+<!-- /.section -->
+
+<div class="container">
+
+    <div class="row well">
+        <div class="col-lg-8 col-md-8">
+            <h4>'Modern Business' is a ready-to-use, Bootstrap 3 updated, multi-purpose HTML theme!</h4>
+            <p>For more templates and more page options that you can integrate into this website template, visit Start Bootstrap!</p>
+        </div>
+        <div class="col-lg-4 col-md-4">
+            <a class="btn btn-lg btn-primary pull-right" href="http://startbootstrap.com">See More Templates!</a>
+        </div>
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+<div class="container">
+
+    <hr>
+
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; Company 2013</p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<!-- /.container -->
+
+{% block scripts %}
+<script src="{{ asset('bundles/volleyface/js/jquery-1.10.2.js') }}"></script>
+<script src="{{ asset('bundles/volleyface/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('bundles/volleyface/js/modern-business.js') }}"></script>
+{% endblock %}
+
 </body>
 </html>
