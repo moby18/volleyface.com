@@ -18,6 +18,8 @@
         <link href="{{ asset('bundles/volleyface/css/styles.css') }}" rel="stylesheet">
     {% endblock %}
 
+    {{ tinymce_init() }}
+
     <link href="{{ asset('bundles/volleyface/images/favicon.ico') }}" rel="shortcut icon">
 </head>
 <body>
@@ -53,6 +55,10 @@
                 <li class="active"><a href="{{ path("player") }}">Players</a></li>
                 <li class="active"><a href="{{ path("category") }}">Categories</a></li>
                 <li class="active"><a href="{{ path("post") }}">Posts</a></li>
+                <li class="active"><a href="{{ path("season") }}">Seasons</a></li>
+                <li class="active"><a href="{{ path("tournament") }}">Tournaments</a></li>
+                <li class="active"><a href="{{ path("team") }}">Teams</a></li>
+                <li class="active"><a href="{{ path("game") }}">Games</a></li>
                 <li><a href="#">Reports</a></li>
                 <li><a href="#">Analytics</a></li>
                 <li><a href="#">Export</a></li>

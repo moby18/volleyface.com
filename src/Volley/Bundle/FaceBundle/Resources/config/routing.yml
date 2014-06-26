@@ -8,29 +8,29 @@ volley_face_admin:
 
 VolleyFaceBundle_player:
     resource: "@VolleyFaceBundle/Resources/config/routing/player.yml"
-    prefix:   /player
+    prefix:   /admin/player
 
 VolleyFaceBundle_category:
     resource: "@VolleyFaceBundle/Resources/config/routing/category.yml"
-    prefix:   /category
+    prefix:   /admin/category
 
 VolleyFaceBundle_post:
     resource: "@VolleyFaceBundle/Resources/config/routing/post.yml"
-    prefix:   /post
+    prefix:   /admin/post
 
 VolleyFaceBundle_season:
     resource: "@VolleyFaceBundle/Resources/config/routing/season.yml"
-    prefix:   /season
+    prefix:   /admin/season
 
 VolleyFaceBundle_tournament:
     resource: "@VolleyFaceBundle/Resources/config/routing/tournament.yml"
-    prefix:   /tournament
+    prefix:   /admin/tournament
 
 VolleyFaceBundle_team:
     resource: "@VolleyFaceBundle/Resources/config/routing/team.yml"
-    prefix:   /team
+    prefix:   /admin/team
 
 VolleyFaceBundle_game:
     resource: "@VolleyFaceBundle/Resources/config/routing/game.yml"
-    prefix:   /game
+    prefix:   /admin/game
 

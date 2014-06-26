@@ -17,7 +17,11 @@ class PostType extends AbstractType
         $builder
             ->add('title')
             ->add('slug')
-            ->add('text')
+            ->add('text', 'textarea', array(
+                'attr' => array(
+                    'class' => 'tinymce',
+                    'data-theme' => 'advanced' // simple, advanced, bbcode
+                ), 'required'=>false))
             ->add('state')
             ->add('created')
             ->add('published')
