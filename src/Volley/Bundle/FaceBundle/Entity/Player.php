@@ -3,6 +3,7 @@
 namespace Volley\Bundle\FaceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Volley\Bundle\FaceBundle\Entity\Team;
 
 /**
  * Player
@@ -105,6 +106,16 @@ class Player
      */
     private $grade;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Team", inversedBy="users")
+     * @ORM\JoinTable(name="players_teams")
+     **/
+    private $teams;
+
+
+    public function __construct() {
+        $this->teams = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -390,5 +401,38 @@ class Player
     public function getGrade()
     {
         return $this->grade;
+    }
+
+    /**
+     * Add teams
+     *
+     * @param \Volley\Bundle\FaceBundle\Entity\Team $teams
+     * @return Player
+     */
+    public function addTeam(\Volley\Bundle\FaceBundle\Entity\Team $teams)
+    {
+        $this->teams[] = $teams;
+
+        return $this;
+    }
+
+    /**
+     * Remove teams
+     *
+     * @param \Volley\Bundle\FaceBundle\Entity\Team $teams
+     */
+    public function removeTeam(\Volley\Bundle\FaceBundle\Entity\Team $teams)
+    {
+        $this->teams->removeElement($teams);
+    }
+
+    /**
+     * Get teams
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTeams()
+    {
+        return $this->teams;
     }
 }

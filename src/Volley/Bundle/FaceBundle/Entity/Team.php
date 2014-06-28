@@ -3,6 +3,7 @@
 namespace Volley\Bundle\FaceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Volley\Bundle\FaceBundle\Entity\Player;
 
 /**
  * Team
@@ -49,6 +50,14 @@ class Team
      */
     private $place;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Player", mappedBy="teams")
+     **/
+    private $players;
+
+    public function __construct() {
+        $this->players = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -150,5 +159,38 @@ class Team
     public function getPlace()
     {
         return $this->place;
+    }
+
+    /**
+     * Add players
+     *
+     * @param \Volley\Bundle\FaceBundle\Entity\Player $players
+     * @return Team
+     */
+    public function addPlayer(\Volley\Bundle\FaceBundle\Entity\Player $players)
+    {
+        $this->players[] = $players;
+
+        return $this;
+    }
+
+    /**
+     * Remove players
+     *
+     * @param \Volley\Bundle\FaceBundle\Entity\Player $players
+     */
+    public function removePlayer(\Volley\Bundle\FaceBundle\Entity\Player $players)
+    {
+        $this->players->removeElement($players);
+    }
+
+    /**
+     * Get players
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPlayers()
+    {
+        return $this->players;
     }
 }
