@@ -435,4 +435,11 @@ class Player
     {
         return $this->teams;
     }
+
+    function __toString()
+    {
+        return $this->getFirstName()." ".$this->getLastName();
+    }
+
+
 }
