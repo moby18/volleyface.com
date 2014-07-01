@@ -22,58 +22,66 @@ class Game
     private $id;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="number", type="integer")
+    */
+    private $number;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="tournament", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Volley\Bundle\FaceBundle\Entity\Tournament",inversedBy="games")
      */
     private $tournament;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="home_team", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Volley\Bundle\FaceBundle\Entity\Round",inversedBy="games")
+     */
+    private $round;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Volley\Bundle\FaceBundle\Entity\Team")
+     * @ORM\JoinColumn(name="home_team_id", referencedColumnName="id", nullable=true)
      */
     private $homeTeam;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="away_team", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Volley\Bundle\FaceBundle\Entity\Team")
+     * @ORM\JoinColumn(name="away_team_id", referencedColumnName="id", nullable=true)
      */
     private $awayTeam;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="score", type="string", length=255)
+     * @ORM\Column(name="score", type="string", length=255, nullable=true)
      */
     private $score;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="score_set", type="string", length=255)
+     * @ORM\Column(name="score_set", type="string", length=255, nullable=true)
      */
     private $scoreSet;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="played", type="boolean")
+     * @ORM\Column(name="played", type="boolean", nullable=true)
      */
     private $played;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="date", type="datetime", nullable=true)
      */
     private $date;
 
@@ -270,5 +278,51 @@ class Game
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set number
+     *
+     * @param integer $number
+     * @return Game
+     */
+    public function setNumber($number)
+    {
+        $this->number = $number;
+
+        return $this;
+    }
+
+    /**
+     * Get number
+     *
+     * @return integer 
+     */
+    public function getNumber()
+    {
+        return $this->number;
+    }
+
+    /**
+     * Set round
+     *
+     * @param \Volley\Bundle\FaceBundle\Entity\Round $round
+     * @return Game
+     */
+    public function setRound(\Volley\Bundle\FaceBundle\Entity\Round $round = null)
+    {
+        $this->round = $round;
+
+        return $this;
+    }
+
+    /**
+     * Get round
+     *
+     * @return \Volley\Bundle\FaceBundle\Entity\Round 
+     */
+    public function getRound()
+    {
+        return $this->round;
     }
 }

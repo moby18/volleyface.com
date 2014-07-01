@@ -32,7 +32,7 @@ class Player
     /**
      * @var string
      *
-     * @ORM\Column(name="middle_name", type="string", length=255)
+     * @ORM\Column(name="middle_name", type="string", length=255, nullable=true)
      */
     private $middleName;
 
@@ -46,35 +46,35 @@ class Player
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="birth_date", type="date")
+     * @ORM\Column(name="birth_date", type="date", nullable=true)
      */
     private $birthDate;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="height", type="smallint")
+     * @ORM\Column(name="height", type="smallint", nullable=true)
      */
     private $height;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="weight", type="smallint")
+     * @ORM\Column(name="weight", type="smallint", nullable=true)
      */
     private $weight;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="spike", type="smallint")
+     * @ORM\Column(name="spike", type="smallint", nullable=true)
      */
     private $spike;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="block", type="smallint")
+     * @ORM\Column(name="block", type="smallint", nullable=true)
      */
     private $block;
 
@@ -88,21 +88,21 @@ class Player
     /**
      * @var string
      *
-     * @ORM\Column(name="position", type="string", length=255)
+     * @ORM\Column(name="position", type="string", length=255, nullable=true)
      */
     private $position;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="number", type="integer")
+     * @ORM\Column(name="number", type="integer", nullable=true)
      */
     private $number;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="grade", type="string", length=255)
+     * @ORM\Column(name="grade", type="string", length=255, nullable=true)
      */
     private $grade;
 

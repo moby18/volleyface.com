@@ -31,21 +31,21 @@ class Tournament
     /**
      * @var boolean
      *
-     * @ORM\Column(name="status", type="boolean")
+     * @ORM\Column(name="status", type="boolean", nullable=true)
      */
     private $status;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="ordering", type="integer")
+     * @ORM\Column(name="ordering", type="integer", nullable=true)
      */
     private $ordering;
 
@@ -53,6 +53,16 @@ class Tournament
      * @ORM\OneToMany(targetEntity="Volley\Bundle\FaceBundle\Entity\Team", mappedBy="tournament")
      */
     private $teams;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Volley\Bundle\FaceBundle\Entity\Round",mappedBy="tournament")
+     */
+    private $rounds;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Volley\Bundle\FaceBundle\Entity\Game",mappedBy="tournament")
+     */
+    private $games;
 
     /**
      * Get id
@@ -194,5 +204,101 @@ class Tournament
     public function getTeams()
     {
         return $this->teams;
+    }
+
+    function __toString()
+    {
+        return $this->getName();
+    }
+
+
+
+    /**
+     * Set round
+     *
+     * @param \Volley\Bundle\FaceBundle\Entity\Round $round
+     * @return Tournament
+     */
+    public function setRound(\Volley\Bundle\FaceBundle\Entity\Round $round = null)
+    {
+        $this->round = $round;
+
+        return $this;
+    }
+
+    /**
+     * Get round
+     *
+     * @return \Volley\Bundle\FaceBundle\Entity\Round 
+     */
+    public function getRound()
+    {
+        return $this->round;
+    }
+
+    /**
+     * Add rounds
+     *
+     * @param \Volley\Bundle\FaceBundle\Entity\Round $rounds
+     * @return Tournament
+     */
+    public function addRound(\Volley\Bundle\FaceBundle\Entity\Round $rounds)
+    {
+        $this->rounds[] = $rounds;
+
+        return $this;
+    }
+
+    /**
+     * Remove rounds
+     *
+     * @param \Volley\Bundle\FaceBundle\Entity\Round $rounds
+     */
+    public function removeRound(\Volley\Bundle\FaceBundle\Entity\Round $rounds)
+    {
+        $this->rounds->removeElement($rounds);
+    }
+
+    /**
+     * Get rounds
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRounds()
+    {
+        return $this->rounds;
+    }
+
+    /**
+     * Add games
+     *
+     * @param \Volley\Bundle\FaceBundle\Entity\Game $games
+     * @return Tournament
+     */
+    public function addGame(\Volley\Bundle\FaceBundle\Entity\Game $games)
+    {
+        $this->games[] = $games;
+
+        return $this;
+    }
+
+    /**
+     * Remove games
+     *
+     * @param \Volley\Bundle\FaceBundle\Entity\Game $games
+     */
+    public function removeGame(\Volley\Bundle\FaceBundle\Entity\Game $games)
+    {
+        $this->games->removeElement($games);
+    }
+
+    /**
+     * Get games
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGames()
+    {
+        return $this->games;
     }
 }

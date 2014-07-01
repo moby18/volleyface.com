@@ -34,3 +34,7 @@ VolleyFaceBundle_game:
     resource: "@VolleyFaceBundle/Resources/config/routing/game.yml"
     prefix:   /admin/game
 
+VolleyFaceBundle_admin_round:
+    resource: "@VolleyFaceBundle/Resources/config/routing/round.yml"
+    prefix:   /admin/round
+

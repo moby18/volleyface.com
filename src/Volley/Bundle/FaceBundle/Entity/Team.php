@@ -24,28 +24,28 @@ class Team
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="rating", type="integer")
+     * @ORM\Column(name="rating", type="integer", nullable=true)
      */
     private $rating;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="rank", type="smallint")
+     * @ORM\Column(name="rank", type="smallint", nullable=true)
      */
     private $rank;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="place", type="smallint")
+     * @ORM\Column(name="place", type="smallint", nullable=true)
      */
     private $place;
 
@@ -220,4 +220,11 @@ class Team
     {
         return $this->tournament;
     }
+
+    function __toString()
+    {
+        return $this->getName();
+    }
+
+
 }

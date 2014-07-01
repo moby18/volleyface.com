@@ -38,7 +38,7 @@ class Post
      * @var string
      *
      * @Gedmo\Slug(fields={"title","id"})
-     * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     * @ORM\Column(name="slug", type="string", length=255, unique=true, nullable=true)
      */
     private $slug;
 
@@ -84,29 +84,23 @@ class Post
     private $content;
 
     /**
-     * @Gedmo\Versioned
-     * @Doctrine\ORM\Mapping\ManyToOne(targetEntity="Article", inversedBy="comments")
-     */
-//    private $article;
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="created_by", type="string", length=255)
+     * @ORM\Column(name="created_by", type="string", length=255, nullable=true)
      */
     private $createdBy;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="modified_by", type="string", length=255)
+     * @ORM\Column(name="modified_by", type="string", length=255, nullable=true)
      */
     private $modifiedBy;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="source", type="string", length=255)
+     * @ORM\Column(name="source", type="string", length=255, nullable=true)
      */
     private $source;
 
@@ -114,51 +108,56 @@ class Post
      * @var string
      *
      * @Gedmo\SortablePosition
-     * @ORM\Column(name="ordering", type="integer")
+     * @ORM\Column(name="ordering", type="integer", nullable=true)
      */
     private $ordering;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="metakey", type="string", length=255)
+     * @ORM\Column(name="metakey", type="string", length=255, nullable=true)
      */
     private $metakey;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="metadescr", type="string", length=255)
+     * @ORM\Column(name="metadescr", type="string", length=255, nullable=true)
      */
     private $metadescr;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="hits", type="integer")
+     * @ORM\Column(name="hits", type="integer", nullable=true)
      */
     private $hits;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="metadata", type="string", length=255)
+     * @ORM\Column(name="metadata", type="string", length=255, nullable=true)
      */
     private $metadata;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="featured", type="boolean")
+     * @ORM\Column(name="featured", type="boolean", nullable=true)
      */
     private $featured;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="language", type="string", length=255)
+     * @ORM\Column(name="language", type="string", length=255, nullable=true)
      */
     private $language;
+
+    function __construct()
+    {
+        $this->state = true;
+    }
 
 
     /**
@@ -607,4 +606,11 @@ class Post
     {
         return $this->content;
     }
+
+    function __toString()
+    {
+        return $this->getTitle();
+    }
+
+
 }

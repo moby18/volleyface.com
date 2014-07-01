@@ -35,6 +35,7 @@ class TeamType extends AbstractType
                     )
                 )
             )
+            ->add('tournament')
         ;
     }
     

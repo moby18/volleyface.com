@@ -45,14 +45,14 @@ class Season
     /**
      * @var integer
      *
-     * @ORM\Column(name="ordering", type="integer")
+     * @ORM\Column(name="ordering", type="integer", nullable=true)
      */
     private $ordering;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="status", type="boolean")
+     * @ORM\Column(name="status", type="boolean", nullable=true)
      */
     private $status;
 
