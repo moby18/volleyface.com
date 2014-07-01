@@ -3,7 +3,6 @@
 namespace Volley\Bundle\FaceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Volley\Bundle\FaceBundle\Entity\Player;
 
 /**
  * Team
@@ -51,9 +50,14 @@ class Team
     private $place;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Player", mappedBy="teams")
+     * @ORM\ManyToMany(targetEntity="Volley\Bundle\FaceBundle\Entity\Player", mappedBy="teams")
      **/
     private $players;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Volley\Bundle\FaceBundle\Entity\Tournament", inversedBy="teams")
+     **/
+    private $tournament;
 
     public function __construct() {
         $this->players = new \Doctrine\Common\Collections\ArrayCollection();
@@ -192,5 +196,28 @@ class Team
     public function getPlayers()
     {
         return $this->players;
+    }
+
+    /**
+     * Set tournament
+     *
+     * @param \Volley\Bundle\FaceBundle\Entity\Tournament $tournament
+     * @return Team
+     */
+    public function setTournament(\Volley\Bundle\FaceBundle\Entity\Tournament $tournament = null)
+    {
+        $this->tournament = $tournament;
+
+        return $this;
+    }
+
+    /**
+     * Get tournament
+     *
+     * @return \Volley\Bundle\FaceBundle\Entity\Tournament 
+     */
+    public function getTournament()
+    {
+        return $this->tournament;
     }
 }

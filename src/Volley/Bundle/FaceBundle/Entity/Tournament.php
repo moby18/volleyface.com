@@ -49,6 +49,10 @@ class Tournament
      */
     private $ordering;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Volley\Bundle\FaceBundle\Entity\Team", mappedBy="tournament")
+     */
+    private $teams;
 
     /**
      * Get id
@@ -150,5 +154,45 @@ class Tournament
     public function getOrdering()
     {
         return $this->ordering;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->teams = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add teams
+     *
+     * @param \Volley\Bundle\FaceBundle\Entity\Team $teams
+     * @return Tournament
+     */
+    public function addTeam(\Volley\Bundle\FaceBundle\Entity\Team $teams)
+    {
+        $this->teams[] = $teams;
+
+        return $this;
+    }
+
+    /**
+     * Remove teams
+     *
+     * @param \Volley\Bundle\FaceBundle\Entity\Team $teams
+     */
+    public function removeTeam(\Volley\Bundle\FaceBundle\Entity\Team $teams)
+    {
+        $this->teams->removeElement($teams);
+    }
+
+    /**
+     * Get teams
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTeams()
+    {
+        return $this->teams;
     }
 }
