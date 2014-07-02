@@ -3,13 +3,16 @@
 namespace Volley\Bundle\FaceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Volley\Bundle\FaceBundle\Entity\Team;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Player
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class Player
 {
@@ -112,9 +115,167 @@ class Player
      **/
     private $teams;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    public $path;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255)
+     */
+    private $image;
+
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
+    private $file;
+
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    private $temp;
+    private $cache;
+
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+        // check if we have an old image path
+        if (is_file($this->getAbsolutePath())) {
+            // store the old name to delete after the update
+            $this->temp = $this->getAbsolutePath();
+            $this->cache = $this->getAbsoluteCachePath();
+        } else {
+            $this->image = 'initial';
+        }
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->getFile()) {
+            $this->image = $this->getFile()->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+
+        if (null === $this->getFile()) {
+            return;
+        }
+
+        // check if we have an old image
+        if (isset($this->temp)) {
+            // delete the old image
+            unlink($this->temp);
+            unlink($this->cache);
+            // clear the temp image path
+            $this->temp = null;
+            $this->cache = null;
+        }
+
+        // you must throw an exception here if the file cannot be moved
+        // so that the entity is not persisted to the database
+        // which the UploadedFile move() method does
+        $this->getFile()->move(
+            $this->getUploadRootDir(),
+            $this->id . '.' . $this->getFile()->guessExtension()
+        );
+
+        $this->setFile(null);
+    }
+
+    /**
+     * @ORM\PreRemove()
+     */
+    public function storeFilenameForRemove()
+    {
+        $this->temp = $this->getAbsolutePath();
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if (isset($this->temp)) {
+            unlink($this->temp);
+        }
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->image
+            ? null
+            : $this->getUploadRootDir() . '\\' . $this->id . '.' . $this->image;
+    }
+
+    public function getAbsoluteCachePath()
+    {
+        return null === $this->image
+            ? null
+            : $this->getCacheUploadRootDir() . '\\' . $this->id . '.' . $this->image;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->image
+            ? null
+            : $this->getUploadDir() . '\\' . $this->image;
+    }
+
+    public function getUploadRootDir()
+    {
+        // the absolute directory path where uploaded
+        // documents should be saved
+        return __DIR__ . '\\..\\..\\..\\..\\..\\web\\' . $this->getUploadDir();
+    }
+
+    public function getCacheUploadRootDir()
+    {
+        // the absolute directory path where uploaded
+        // documents should be saved
+        return __DIR__ . '\\..\\..\\..\\..\\..\\web\\' . $this->getUploadCacheDir();
+    }
+
+    public function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'uploads\players';
+    }
+
+    public function getUploadCacheDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'media\cache\events_logo\uploads\players';
+    }
+
 
     public function __construct() {
-        $this->teams = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->teams = new ArrayCollection();
     }
 
     /**

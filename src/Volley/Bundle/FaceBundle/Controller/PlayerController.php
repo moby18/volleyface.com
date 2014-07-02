@@ -8,6 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Volley\Bundle\FaceBundle\Entity\Player;
 use Volley\Bundle\FaceBundle\Form\PlayerType;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
 /**
  * Player controller.
  *
