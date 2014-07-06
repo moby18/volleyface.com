@@ -110,10 +110,25 @@ class Player
     private $grade;
 
     /**
+     * @ORM\Column(name="descr", type="text", nullable=true)
+     */
+    private $description;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Team", inversedBy="users")
      * @ORM\JoinTable(name="players_teams")
      **/
-    private $teams;
+//    private $teams;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Volley\Bundle\FaceBundle\Entity\Team", mappedBy="playerOne")
+     **/
+    private $teamsOne;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Volley\Bundle\FaceBundle\Entity\Team", mappedBy="playerTwo")
+     **/
+    private $teamsTwo;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -242,7 +257,7 @@ class Player
     {
         return null === $this->image
             ? null
-            : $this->getUploadDir() . '\\' . $this->image;
+            : $this->getUploadDir() . '/' . $this->id .".". $this->image;
     }
 
     public function getUploadRootDir()
@@ -263,7 +278,7 @@ class Player
     {
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
-        return 'uploads\players';
+        return '/uploads/players';
     }
 
     public function getUploadCacheDir()
@@ -603,4 +618,165 @@ class Player
     }
 
 
+
+    /**
+     * Set path
+     *
+     * @param string $path
+     * @return Player
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get path
+     *
+     * @return string 
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return Player
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set teamsOne
+     *
+     * @param \Volley\Bundle\FaceBundle\Entity\Team $teamsOne
+     * @return Player
+     */
+    public function setTeamsOne(\Volley\Bundle\FaceBundle\Entity\Team $teamsOne = null)
+    {
+        $this->teamsOne = $teamsOne;
+
+        return $this;
+    }
+
+    /**
+     * Get teamsOne
+     *
+     * @return \Volley\Bundle\FaceBundle\Entity\Team 
+     */
+    public function getTeamsOne()
+    {
+        return $this->teamsOne;
+    }
+
+    /**
+     * Set teamsTwo
+     *
+     * @param \Volley\Bundle\FaceBundle\Entity\Team $teamsTwo
+     * @return Player
+     */
+    public function setTeamsTwo(\Volley\Bundle\FaceBundle\Entity\Team $teamsTwo = null)
+    {
+        $this->teamsTwo = $teamsTwo;
+
+        return $this;
+    }
+
+    /**
+     * Get teamsTwo
+     *
+     * @return \Volley\Bundle\FaceBundle\Entity\Team 
+     */
+    public function getTeamsTwo()
+    {
+        return $this->teamsTwo;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Player
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Add teamsOne
+     *
+     * @param \Volley\Bundle\FaceBundle\Entity\Team $teamsOne
+     * @return Player
+     */
+    public function addTeamsOne(\Volley\Bundle\FaceBundle\Entity\Team $teamsOne)
+    {
+        $this->teamsOne[] = $teamsOne;
+
+        return $this;
+    }
+
+    /**
+     * Remove teamsOne
+     *
+     * @param \Volley\Bundle\FaceBundle\Entity\Team $teamsOne
+     */
+    public function removeTeamsOne(\Volley\Bundle\FaceBundle\Entity\Team $teamsOne)
+    {
+        $this->teamsOne->removeElement($teamsOne);
+    }
+
+    /**
+     * Add teamsTwo
+     *
+     * @param \Volley\Bundle\FaceBundle\Entity\Team $teamsTwo
+     * @return Player
+     */
+    public function addTeamsTwo(\Volley\Bundle\FaceBundle\Entity\Team $teamsTwo)
+    {
+        $this->teamsTwo[] = $teamsTwo;
+
+        return $this;
+    }
+
+    /**
+     * Remove teamsTwo
+     *
+     * @param \Volley\Bundle\FaceBundle\Entity\Team $teamsTwo
+     */
+    public function removeTeamsTwo(\Volley\Bundle\FaceBundle\Entity\Team $teamsTwo)
+    {
+        $this->teamsTwo->removeElement($teamsTwo);
+    }
 }

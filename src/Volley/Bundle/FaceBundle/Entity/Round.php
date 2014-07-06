@@ -42,6 +42,7 @@ class Round
 
     /**
      * @ORM\OneToMany(targetEntity="Volley\Bundle\FaceBundle\Entity\Game",mappedBy="round")
+     * @ORM\OrderBy({"number" = "ASC"})
      */
     private $games;
 

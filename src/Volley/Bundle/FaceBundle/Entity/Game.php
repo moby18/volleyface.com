@@ -36,6 +36,20 @@ class Game
     private $name;
 
     /**
+     * @var smallint
+     *
+     * @ORM\Column(name="cort", type="smallint", nullable=true)
+     */
+    private $cort;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="duration", type="string", length=255, nullable=true)
+     */
+    private $duration;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Volley\Bundle\FaceBundle\Entity\Tournament",inversedBy="games")
      */
     private $tournament;
@@ -67,9 +81,16 @@ class Game
     /**
      * @var string
      *
-     * @ORM\Column(name="score_set", type="string", length=255, nullable=true)
+     * @ORM\Column(name="score_set_home", type="string", length=255, nullable=true)
      */
-    private $scoreSet;
+    private $scoreSetHome;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="score_set_away", type="string", length=255, nullable=true)
+     */
+    private $scoreSetAway;
 
     /**
      * @var boolean
@@ -324,5 +345,97 @@ class Game
     public function getRound()
     {
         return $this->round;
+    }
+
+    /**
+     * Set cort
+     *
+     * @param integer $cort
+     * @return Game
+     */
+    public function setCort($cort)
+    {
+        $this->cort = $cort;
+
+        return $this;
+    }
+
+    /**
+     * Get cort
+     *
+     * @return integer 
+     */
+    public function getCort()
+    {
+        return $this->cort;
+    }
+
+    /**
+     * Set duration
+     *
+     * @param string $duration
+     * @return Game
+     */
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    /**
+     * Get duration
+     *
+     * @return string 
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    /**
+     * Set scoreSetHome
+     *
+     * @param string $scoreSetHome
+     * @return Game
+     */
+    public function setScoreSetHome($scoreSetHome)
+    {
+        $this->scoreSetHome = $scoreSetHome;
+
+        return $this;
+    }
+
+    /**
+     * Get scoreSetHome
+     *
+     * @return string 
+     */
+    public function getScoreSetHome()
+    {
+        return $this->scoreSetHome;
+    }
+
+    /**
+     * Set scoreSetAway
+     *
+     * @param string $scoreSetAway
+     * @return Game
+     */
+    public function setScoreSetAway($scoreSetAway)
+    {
+        $this->scoreSetAway = $scoreSetAway;
+
+        return $this;
+    }
+
+    /**
+     * Get scoreSetAway
+     *
+     * @return string 
+     */
+    public function getScoreSetAway()
+    {
+        return $this->scoreSetAway;
     }
 }

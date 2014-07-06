@@ -28,6 +28,7 @@ class PlayerType extends AbstractType
             ->add('number')
             ->add('grade')
             ->add('file')
+            ->add('description')
         ;
     }
     

@@ -21,21 +21,32 @@ class TeamType extends AbstractType
             ->add('rating')
             ->add('rank')
             ->add('place')
-            ->add('players',null,
+//            ->add('players',null,
+//                array(
+//                    'multiple' => true,
+//                    'constraints' => array(
+//                        new Assert\Count(
+//                            array(
+//                                'min' => 2,
+//                                'max' => 2,
+//                                'exactMessage' => 'Team should contain exactly 2 players.',
+//                            )
+//                        )
+//                    )
+//                )
+//            )
+            ->add('playerOne',null,
                 array(
-                    'multiple' => true,
-                    'constraints' => array(
-                        new Assert\Count(
-                            array(
-                                'min' => 2,
-                                'max' => 2,
-                                'exactMessage' => 'Team should contain exactly 2 players.',
-                            )
-                        )
-                    )
+                    'multiple' => false
+                )
+            )
+            ->add('playerTwo',null,
+                array(
+                    'multiple' => false
                 )
             )
             ->add('tournament')
+            ->add('file')
         ;
     }
     
