@@ -169,11 +169,19 @@ class Player
     {
         $this->file = $file;
         // check if we have an old image path
+//        print_r($this->getAbsolutePath());
+
         if (is_file($this->getAbsolutePath())) {
             // store the old name to delete after the update
             $this->temp = $this->getAbsolutePath();
+            print_r("1");
+//            print_r("<br>");
+//            print_r($this->getAbsolutePath());
+//            exit;
+
             $this->cache = $this->getAbsoluteCachePath();
         } else {
+            print_r("2");
             $this->image = 'initial';
         }
     }
@@ -278,7 +286,7 @@ class Player
     {
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
-        return '/uploads/players';
+        return '\\uploads\\players';
     }
 
     public function getUploadCacheDir()

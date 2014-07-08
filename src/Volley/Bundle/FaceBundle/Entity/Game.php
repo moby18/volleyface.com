@@ -66,10 +66,20 @@ class Game
     private $homeTeam;
 
     /**
+     * @ORM\Column(name="home_team_empty", type="boolean", nullable=true)
+     */
+    private $homeTeamEmpty;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Volley\Bundle\FaceBundle\Entity\Team")
      * @ORM\JoinColumn(name="away_team_id", referencedColumnName="id", nullable=true)
      */
     private $awayTeam;
+
+    /**
+     * @ORM\Column(name="away_team_empty", type="boolean", nullable=true)
+     */
+    private $awayTeamEmpty;
 
     /**
      * @var string
@@ -437,5 +447,51 @@ class Game
     public function getScoreSetAway()
     {
         return $this->scoreSetAway;
+    }
+
+    /**
+     * Set homeTeamEmpty
+     *
+     * @param boolean $homeTeamEmpty
+     * @return Game
+     */
+    public function setHomeTeamEmpty($homeTeamEmpty)
+    {
+        $this->homeTeamEmpty = $homeTeamEmpty;
+
+        return $this;
+    }
+
+    /**
+     * Get homeTeamEmpty
+     *
+     * @return boolean 
+     */
+    public function getHomeTeamEmpty()
+    {
+        return $this->homeTeamEmpty;
+    }
+
+    /**
+     * Set awayTeamEmpty
+     *
+     * @param boolean $awayTeamEmpty
+     * @return Game
+     */
+    public function setAwayTeamEmpty($awayTeamEmpty)
+    {
+        $this->awayTeamEmpty = $awayTeamEmpty;
+
+        return $this;
+    }
+
+    /**
+     * Get awayTeamEmpty
+     *
+     * @return boolean 
+     */
+    public function getAwayTeamEmpty()
+    {
+        return $this->awayTeamEmpty;
     }
 }

@@ -12,7 +12,7 @@
                 <th>Hometeam</th>
                 <th>Awayteam</th>
                 <th>Score</th>
-                <th>Scoreset</th>
+                {#<th>Scoreset</th>#}
                 <th>Played</th>
                 <th>Date</th>
                 <th>Actions</th>
@@ -27,7 +27,7 @@
                 <td>{{ entity.homeTeam }}</td>
                 <td>{{ entity.awayTeam }}</td>
                 <td>{{ entity.score }}</td>
-                <td>{{ entity.scoreSet }}</td>
+                {#<td>{{ entity.scoreSet }}</td>#}
                 <td>{{ entity.played }}</td>
                 <td>{% if entity.date %}{{ entity.date|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
