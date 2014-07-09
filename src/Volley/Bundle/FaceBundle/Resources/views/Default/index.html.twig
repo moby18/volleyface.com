@@ -2,7 +2,6 @@
 
 {% block content %}
 
-
     <div class="section tours">
 
         <div class="container">
@@ -30,17 +29,84 @@
             </div>
             <!-- /.row -->
 
+            <hr>
+
         </div>
         <!-- /.container -->
 
     </div>
     <!-- /.section -->
 
+    <div class="container">
+
+        <div class="row well">
+            <div class="col-lg-8 col-md-8">
+                <h4>Запрошуємо взяти участь у другому турі відкритого чемпіонату Черкаської області з пляжного волейболу </h4>
+                {#<p>For more templates and more page options that you can integrate into this website template, visit Start Bootstrap!</p>#}
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <a class="btn btn-lg btn-primary pull-right" href="">Заповнити заявку</a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <div class="section">
+
+        <div class="container">
+
+            {% for news_item in news %}
+            <div class="row">
+
+            {% if loop.index is odd %}
+                <div class="col-md-7">
+                    <a href="{#{{ path('volley_face_post') }}#}">
+                        <img class="img-responsive" src="{{ news_item.getWebPath }}">
+                    </a>
+                </div>
+                <div class="col-md-5">
+                    <h3>{{ news_item.title }}</h3>
+                    {#<h4>Subheading</h4>#}
+                    <p>{{ news_item.text|striptags }}</p>
+                    <a class="btn btn-primary" href="">Детальніше <i class="fa fa-angle-right"></i></a>
+                </div>
+            {% else %}
+                <div class="col-md-5">
+                    <h3>{{ news_item.title }}</h3>
+                    {#<h4>Subheading</h4>#}
+                    <p>{{ news_item.text|striptags }}</p>
+                    <a class="btn btn-primary" href="">Детальніше <i class="fa fa-angle-right"></i></a>
+                </div>
+                <div class="col-md-7">
+                    <a href="{#{{ path('volley_face_post') }}#}">
+                        <img class="img-responsive" src="{{ news_item.getWebPath }}">
+                    </a>
+                </div>
+            {% endif %}
+
+            </div>
+
+            {% if not loop.last %}
+                <hr>
+            {% endif %}
+
+            {% endfor %}
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.section -->
+
+
+
     <div class="section man medals">
 
         <div class="container">
 
-            <h1 class="main_title text-center"> Чоловічі змагання </h1>
+            <h1 class="main_title text-center"> Переможці 1-го туру у чоловічому турнірі </h1>
 
             <hr/>
 
@@ -94,7 +160,7 @@
 
         <div class="container">
 
-            <h1 class="main_title text-center"> Жіночі змагання </h1>
+            <h1 class="main_title text-center"> Переможці 1-го туру у жіночому турнірі </h1>
 
             <hr>
 
@@ -144,279 +210,29 @@
     </div>
     <!-- /.section -->
 
+    {#<div class="section-colored">#}
 
-    <div class="section">
+        {#<div class="container">#}
 
-    <div class="container">
+            {#<div class="row">#}
+                {#<div class="col-lg-6 col-md-6 col-sm-6">#}
+                    {#<h2>Місце проведення змагань:</h2>#}
+                    {#<ul>#}
+                        {#<li>Місто Черкаси, вулиця Героїв Дніпра 49</li>#}
+                        {#<li>пляж "Живчик", 18000</li>#}
+                    {#</ul>#}
+                {#</div>#}
+                {#<div class="col-lg-6 col-md-6 col-sm-6">#}
+                    {#<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=%D0%A7%D0%B5%D1%80%D0%BA%D0%B0%D1%81%D1%81%D1%8B%2C%20%D0%A7%D0%B5%D1%80%D0%BA%D0%B0%D1%81%D1%81%D0%BA%D0%B0%D1%8F%20%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C%2C%20%D0%A3%D0%BA%D1%80%D0%B0%D0%B8%D0%BD%D0%B0%20%D0%93%D0%B5%D1%80%D0%BE%D1%8A%D0%B2%20%D0%94%D0%BD%D1%96%D0%BF%D1%80%D0%B0%2049&key=AIzaSyBfh-bCkQbSJG_0TgppcpYAwd97UXhDhcw"></iframe>#}
+                {#</div>#}
+            {#</div>#}
+            {#<!-- /.row -->#}
 
-        <div class="row">
+        {#</div>#}
+        {#<!-- /.container -->#}
 
-            <div class="col-md-7">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive" src="http://placehold.it/750x350">
-                </a>
-            </div>
-
-            <div class="col-md-5">
-                <h3>Project Name</h3>
-                <h4>Subheading</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
-                <a class="btn btn-primary" href="portfolio-item.html">View Project <i class="fa fa-angle-right"></i></a>
-            </div>
-
-        </div>
-
-        <hr>
-
-        <div class="row">
-
-            <div class="col-md-7">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive" src="http://placehold.it/750x350">
-                </a>
-            </div>
-
-            <div class="col-md-5">
-                <h3>Project Name</h3>
-                <h4>Subheading</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
-                <a class="btn btn-primary" href="portfolio-item.html">View Project <i class="fa fa-angle-right"></i></a>
-            </div>
-
-        </div>
-
-        <hr>
-
-        <div class="row">
-
-            <div class="col-md-7">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive" src="http://placehold.it/750x350">
-                </a>
-            </div>
-
-            <div class="col-md-5">
-                <h3>Project Name</h3>
-                <h4>Subheading</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
-                <a class="btn btn-primary" href="portfolio-item.html">View Project <i class="fa fa-angle-right"></i></a>
-            </div>
-
-        </div>
-
-        <hr>
-
-        <div class="row">
-
-            <div class="col-md-7">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive" src="http://placehold.it/750x350">
-                </a>
-            </div>
-
-            <div class="col-md-5">
-                <h3>Project Name</h3>
-                <h4>Subheading</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
-                <a class="btn btn-primary" href="portfolio-item.html">View Project <i class="fa fa-angle-right"></i></a>
-            </div>
-
-        </div>
-
-        <hr>
-
-        <div class="row">
-
-            <div class="col-md-7">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive" src="http://placehold.it/750x350">
-                </a>
-            </div>
-
-            <div class="col-md-5">
-                <h3>Project Name</h3>
-                <h4>Subheading</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
-                <a class="btn btn-primary" href="portfolio-item.html">View Project <i class="fa fa-angle-right"></i></a>
-            </div>
-
-        </div>
-
-
-    </div>
-
-    </div>
-
-    <div class="section">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-4 col-md-4">
-                    <h3><i class="fa fa-check-circle"></i> Bootstrap 3 Built</h3>
-                    <p>The 'Modern Business' website template by <a href="http://startbootstrap.com">Start Bootstrap</a> is built with <a href="http://getbootstrap.com">Bootstrap 3</a>. Make sure you're up to date with latest Bootstrap documentation!</p>
-                </div>
-                <div class="col-lg-4 col-md-4">
-                    <h3><i class="fa fa-pencil"></i> Ready to Style &amp; Edit</h3>
-                    <p>You're ready to go with this pre-built page structure, now all you need to do is add your own custom stylings! You can see some free themes over at <a href="http://bootswatch.com">Bootswatch</a>, or come up with your own using <a href="http://getbootstrap.com/customize/">the Bootstrap customizer</a>!</p>
-                </div>
-                <div class="col-lg-4 col-md-4">
-                    <h3><i class="fa fa-folder-open"></i> Many Page Options</h3>
-                    <p>This template features many common pages that you might see on a business website. Pages include: about, contact, portfolio variations, blog, pricing, FAQ, 404, services, and general multi-purpose pages.</p>
-                </div>
-            </div>
-            <!-- /.row -->
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.section -->
-
-    <div class="section-colored text-center">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>Modern Business: A Clean &amp; Simple Full Website Template by Start Bootstrap</h2>
-                    <p>A complete website design featuring various single page templates from Start Bootstraps library of free HTML starter templates.</p>
-                    <hr>
-                </div>
-            </div>
-            <!-- /.row -->
-
-        </div>
-        <!-- /.container -->
-
-    </div>
+    {#</div>#}
     <!-- /.section-colored -->
-
-    <div class="section">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Display Some Work on the Home Page Portfolio</h2>
-                    <hr>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <a href="portfolio-item.html">
-                        <img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450">
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <a href="portfolio-item.html">
-                        <img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450">
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <a href="portfolio-item.html">
-                        <img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450">
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <a href="portfolio-item.html">
-                        <img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450">
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <a href="portfolio-item.html">
-                        <img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450">
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <a href="portfolio-item.html">
-                        <img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450">
-                    </a>
-                </div>
-            </div>
-            <!-- /.row -->
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.section -->
-
-    <div class="section-colored">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <h2>Modern Business Features Include:</h2>
-                    <ul>
-                        <li>Bootstrap 3 Framework</li>
-                        <li>Mobile Responsive Design</li>
-                        <li>Predefined File Paths</li>
-                        <li>Working PHP Contact Page</li>
-                        <li>Minimal Custom CSS Styles</li>
-                        <li>Unstyled: Add Your Own Style and Content!</li>
-                        <li>Font-Awesome fonts come pre-installed!</li>
-                        <li>100% <strong>Free</strong> to Use</li>
-                        <li>Open Source: Use for any project, private or commercial!</li>
-                    </ul>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <img class="img-responsive" src="http://placehold.it/700x450/ffffff/cccccc">
-                </div>
-            </div>
-            <!-- /.row -->
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.section-colored -->
-
-    <div class="section">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <img class="img-responsive" src="http://placehold.it/700x450">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <h2>Modern Business Features Include:</h2>
-                    <ul>
-                        <li>Bootstrap 3 Framework</li>
-                        <li>Mobile Responsive Design</li>
-                        <li>Predefined File Paths</li>
-                        <li>Working PHP Contact Page</li>
-                        <li>Minimal Custom CSS Styles</li>
-                        <li>Unstyled: Add Your Own Style and Content!</li>
-                        <li>Font-Awesome fonts come pre-installed!</li>
-                        <li>100% <strong>Free</strong> to Use</li>
-                        <li>Open Source: Use for any project, private or commercial!</li>
-                    </ul>
-                </div>
-            </div>
-            <!-- /.row -->
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.section -->
-
-    <div class="container">
-
-        <div class="row well">
-            <div class="col-lg-8 col-md-8">
-                <h4>'Modern Business' is a ready-to-use, Bootstrap 3 updated, multi-purpose HTML theme!</h4>
-                <p>For more templates and more page options that you can integrate into this website template, visit Start Bootstrap!</p>
-            </div>
-            <div class="col-lg-4 col-md-4">
-                <a class="btn btn-lg btn-primary pull-right" href="http://startbootstrap.com">See More Templates!</a>
-            </div>
-        </div>
-        <!-- /.row -->
-
-    </div>
-    <!-- /.container -->
 
 
 {% endblock %}

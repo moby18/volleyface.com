@@ -1,7 +1,11 @@
+h1, h2, h3, h4, h5, h6 {
+    line-height: 130%;
+}
+
 /* Header */
 .navbar-brand {
     background-image: url(/uploads/images/logo_volleyball.png);
-    height: 50px;
+    height: 56px;
     width: 200px;
     background-size: cover;
     background-repeat: no-repeat;
@@ -89,7 +93,8 @@ footer .footer-below {
 }
 
 #tours > div:first-child > .circle {
-    color: #005fb3;
+    /*color: #005fb3;*/
+    color: #000000;
 }
 
 /* Home Images */

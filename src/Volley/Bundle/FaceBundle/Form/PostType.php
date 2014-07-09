@@ -37,6 +37,7 @@ class PostType extends AbstractType
             ->add('featured')
             ->add('language')
             ->add('category')
+            ->add('file')
         ;
     }
     

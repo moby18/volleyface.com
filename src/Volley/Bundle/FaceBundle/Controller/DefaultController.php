@@ -11,29 +11,12 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        // season
-        $seasonID = 1;
-        $season = $em->getRepository('VolleyFaceBundle:Season')->find($seasonID);
+        // news
+        $news = $em->getRepository('VolleyFaceBundle:Post')->findAll();
 
-        // tournamrnt
-        $tournamentID = 1;
-        $tournament = $em->getRepository('VolleyFaceBundle:Tournament')->find($tournamentID);
-
-        // rounds
-        $rounds = $tournament->getRounds();
-
-        // games
-        foreach ($rounds as $round) {
-            $games = $round->getGames();
-            foreach ($games as $game) {
-//                print_r($game->getId());
-            }
-        }
-
-
-
-
-        return $this->render('VolleyFaceBundle:Default:index.html.twig', array());
+        return $this->render('VolleyFaceBundle:Default:index.html.twig', array(
+            'news' => $news
+        ));
     }
 
     public function tournamentAction($season_id, $tournament_id)

@@ -41,6 +41,9 @@ class PostController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $entity->upload();
+
             $em->persist($entity);
             $em->flush();
 
@@ -169,6 +172,9 @@ class PostController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+
+            $entity->upload();
+
             $em->flush();
 
             return $this->redirect($this->generateUrl('post_edit', array('id' => $id)));
