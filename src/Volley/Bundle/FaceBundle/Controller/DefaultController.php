@@ -79,4 +79,35 @@ class DefaultController extends Controller
         ));
     }
 
+    public function postAction($post_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        // post
+        $post = $em->getRepository('VolleyFaceBundle:Post')->find($post_id);
+
+        return $this->render('VolleyFaceBundle:Default:post.html.twig', array(
+            'post' => $post
+        ));
+    }
+
+    public function blogAction($category_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        // post
+        $posts = $em->getRepository('VolleyFaceBundle:Post')->findByCategory($category_id);
+
+        return $this->render('VolleyFaceBundle:Default:blog.html.twig', array(
+            'posts' => $posts
+        ));
+    }
+
+    public function zayavkaAction()
+    {
+
+        return $this->render('VolleyFaceBundle:Default:zayavka.html.twig', array(
+        ));
+    }
+
 }

@@ -188,14 +188,14 @@ class Team
     {
         return null === $this->image
             ? null
-            : $this->getUploadRootDir() . '\\' . $this->id . '.' . $this->image;
+            : $this->getUploadRootDir() . '/' . $this->id . '.' . $this->image;
     }
 
     public function getAbsoluteCachePath()
     {
         return null === $this->image
             ? null
-            : $this->getCacheUploadRootDir() . '\\' . $this->id . '.' . $this->image;
+            : $this->getCacheUploadRootDir() . '/' . $this->id . '.' . $this->image;
     }
 
     public function getWebPath()
@@ -209,14 +209,14 @@ class Team
     {
         // the absolute directory path where uploaded
         // documents should be saved
-        return __DIR__ . '\\..\\..\\..\\..\\..\\web\\' . $this->getUploadDir();
+        return __DIR__ . '/../../../../../web/' . $this->getUploadDir();
     }
 
     public function getCacheUploadRootDir()
     {
         // the absolute directory path where uploaded
         // documents should be saved
-        return __DIR__ . '\\..\\..\\..\\..\\..\\web\\' . $this->getUploadCacheDir();
+        return __DIR__ . '/../../../../../web/' . $this->getUploadCacheDir();
     }
 
     public function getUploadDir()

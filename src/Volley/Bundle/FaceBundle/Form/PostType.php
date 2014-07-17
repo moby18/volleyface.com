@@ -25,7 +25,12 @@ class PostType extends AbstractType
             ->add('state')
             ->add('created')
             ->add('published')
-            ->add('content')
+//            ->add('content')
+            ->add('content', 'textarea', array(
+                'attr' => array(
+                    'class' => 'tinymce',
+                    'data-theme' => 'advanced' // simple, advanced, bbcode
+                ), 'required'=>false))
             ->add('createdBy')
             ->add('modifiedBy')
             ->add('source')

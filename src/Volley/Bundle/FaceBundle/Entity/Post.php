@@ -164,14 +164,14 @@ class Post
     {
         return null === $this->path
             ? null
-            : $this->getUploadRootDir() . '\\' . $this->path;
+            : $this->getUploadRootDir() . '/' . $this->path;
     }
 
     public function getAbsoluteCachePath()
     {
         return null === $this->path
             ? null
-            : $this->getCacheUploadRootDir() . '\\' . $this->path;
+            : $this->getCacheUploadRootDir() . '/' . $this->path;
     }
 
     public function getWebPath()
@@ -185,21 +185,21 @@ class Post
     {
         // the absolute directory path where uploaded
         // documents should be saved
-        return __DIR__ . '\\..\\..\\..\\..\\..\\web\\' . $this->getUploadDir();
+        return __DIR__ . '/../../../../../web/' . $this->getUploadDir();
     }
 
     public function getCacheUploadRootDir()
     {
         // the absolute directory path where uploaded
         // documents should be saved
-        return __DIR__ . '\\..\\..\\..\\..\\..\\web\\' . $this->getUploadCacheDir();
+        return __DIR__ . '/../../../../../web/' . $this->getUploadCacheDir();
     }
 
     public function getUploadDir()
     {
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
-        return '\\uploads\\posts';
+        return '/uploads/posts';
     }
 
     public function getUploadCacheDir()

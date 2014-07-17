@@ -251,14 +251,14 @@ class Player
     {
         return null === $this->image
             ? null
-            : $this->getUploadRootDir() . '\\' . $this->id . '.' . $this->image;
+            : $this->getUploadRootDir() . '/' . $this->id . '.' . $this->image;
     }
 
     public function getAbsoluteCachePath()
     {
         return null === $this->image
             ? null
-            : $this->getCacheUploadRootDir() . '\\' . $this->id . '.' . $this->image;
+            : $this->getCacheUploadRootDir() . '/' . $this->id . '.' . $this->image;
     }
 
     public function getWebPath()
@@ -272,21 +272,21 @@ class Player
     {
         // the absolute directory path where uploaded
         // documents should be saved
-        return __DIR__ . '\\..\\..\\..\\..\\..\\web\\' . $this->getUploadDir();
+        return __DIR__ . '/../../../../../web/' . $this->getUploadDir();
     }
 
     public function getCacheUploadRootDir()
     {
         // the absolute directory path where uploaded
         // documents should be saved
-        return __DIR__ . '\\..\\..\\..\\..\\..\\web\\' . $this->getUploadCacheDir();
+        return __DIR__ . '/../../../../../web/' . $this->getUploadCacheDir();
     }
 
     public function getUploadDir()
     {
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
-        return '\\uploads\\players';
+        return '/uploads/players';
     }
 
     public function getUploadCacheDir()

@@ -14,6 +14,18 @@ volley_face_player:
     pattern:  /player/{player_id}
     defaults: { _controller: VolleyFaceBundle:Default:player }
 
+volley_face_post:
+    pattern:  /post/{post_id}
+    defaults: { _controller: VolleyFaceBundle:Default:post }
+
+volley_face_blog:
+    pattern:  /blog/{category_id}
+    defaults: { _controller: VolleyFaceBundle:Default:blog }
+
+volley_face_zayavka:
+    pattern:  /zayavka
+    defaults: { _controller: VolleyFaceBundle:Default:zayavka }
+
 
 volley_face_admin:
     resource: "@VolleyFaceBundle/Resources/config/routing/admin.yml"
