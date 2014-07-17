@@ -12,7 +12,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         // news
-        $news = $em->getRepository('VolleyFaceBundle:Post')->findAll();
+        $news = $em->getRepository('VolleyFaceBundle:Post')->findBy(array('category' => 1), array('id' => 'DESC'));
 
         return $this->render('VolleyFaceBundle:Default:index.html.twig', array(
             'news' => $news
@@ -96,7 +96,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         // post
-        $posts = $em->getRepository('VolleyFaceBundle:Post')->findByCategory($category_id);
+        $posts = $em->getRepository('VolleyFaceBundle:Post')->findBy(array('category' => $category_id), array('id' => 'DESC'));
 
         return $this->render('VolleyFaceBundle:Default:blog.html.twig', array(
             'posts' => $posts
