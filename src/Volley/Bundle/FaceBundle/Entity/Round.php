@@ -3,6 +3,8 @@
 namespace Volley\Bundle\FaceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Round
@@ -34,6 +36,14 @@ class Round
      * @ORM\Column(name="type", type="string", length=255, nullable=true)
      */
     private $type;
+
+    /**
+     * @var string
+     *
+     * @Gedmo\SortablePosition
+     * @ORM\Column(name="ordering", type="integer", nullable=true)
+     */
+    private $ordering;
 
     /**
      * @ORM\ManyToOne(targetEntity="Volley\Bundle\FaceBundle\Entity\Tournament",inversedBy="rounds")
@@ -172,4 +182,27 @@ class Round
     }
 
 
+
+    /**
+     * Set ordering
+     *
+     * @param integer $ordering
+     * @return Round
+     */
+    public function setOrdering($ordering)
+    {
+        $this->ordering = $ordering;
+
+        return $this;
+    }
+
+    /**
+     * Get ordering
+     *
+     * @return integer 
+     */
+    public function getOrdering()
+    {
+        return $this->ordering;
+    }
 }

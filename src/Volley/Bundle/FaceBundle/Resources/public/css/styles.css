@@ -92,9 +92,13 @@ footer .footer-below {
     color: lightslategray;
 }
 
-#tours > div:first-child > .circle {
-    /*color: #005fb3;*/
+
+#tours > div .circle {
     color: #000000;
+}
+
+#tours > div:last-child > .circle {
+    color: lightslategray;
 }
 
 /* Home Images */

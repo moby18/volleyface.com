@@ -18,7 +18,9 @@ class PlayerType extends AbstractType
             ->add('firstName')
             ->add('middleName')
             ->add('lastName')
-            ->add('birthDate')
+            ->add('birthDate','date', array(
+                'years' => range(1950,2014))
+            )
             ->add('height')
             ->add('weight')
             ->add('spike')
