@@ -16,7 +16,7 @@ class PostType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('slug')
+//            ->add('slug')
             ->add('text', 'textarea', array(
                 'attr' => array(
                     'class' => 'tinymce',

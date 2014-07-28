@@ -19,7 +19,6 @@ class Post
     /**
      * @var integer
      *
-     * @Gedmo\Slug(fields={"title"}, updatable=false, separator="_")
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -30,7 +29,6 @@ class Post
     /**
      * @var string
      *
-     * @Gedmo\Translatable
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
@@ -38,8 +36,8 @@ class Post
     /**
      * @var string
      *
-     * @Gedmo\Slug(fields={"title","id"})
-     * @ORM\Column(name="slug", type="string", length=255, unique=true, nullable=true)
+     * @Gedmo\Slug(fields={"title","id"},updatable=true)
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
      */
     private $slug;
 
@@ -60,26 +58,22 @@ class Post
     /**
      * @var integer
      *
-     * @Gedmo\SortableGroup
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="posts")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
 
     /**
-     * @Gedmo\Timestampable(on="create")
      * @Doctrine\ORM\Mapping\Column(type="datetime")
      */
     private $created;
 
     /**
-     * @Gedmo\Timestampable(on="change", field="status.title", value="Published")
      * @Doctrine\ORM\Mapping\Column(type="date")
      */
     private $published;
 
     /**
-     * @Gedmo\Versioned
      * @Doctrine\ORM\Mapping\Column(type="text")
      */
     private $content;
@@ -108,7 +102,6 @@ class Post
     /**
      * @var string
      *
-     * @Gedmo\SortablePosition
      * @ORM\Column(name="ordering", type="integer", nullable=true)
      */
     private $ordering;

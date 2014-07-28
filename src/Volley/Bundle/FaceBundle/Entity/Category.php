@@ -40,7 +40,6 @@ class Category
     /**
      * @var string
      *
-     * @Gedmo\TreeParent
      * @Doctrine\ORM\Mapping\ManyToOne(targetEntity="Category")
      * @Doctrine\ORM\Mapping\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
      */
