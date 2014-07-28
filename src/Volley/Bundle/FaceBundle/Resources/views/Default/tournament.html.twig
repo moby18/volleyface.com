@@ -23,18 +23,20 @@
                     </thead>
                     <tfoot></tfoot>
                     <tbody>
-                    {% for round in rounds %}
+                    {% for round in rounds|reverse %}
                         <tr>
                             <td colspan="100" class="text-center"><strong>{{ round.name }}</strong></td>
                         </tr>
-                        {% for game in round.games %}
+                        {% for game in round.games|reverse %}
+                            {% set winnerTeamA = (game.scoreSetHome > game.scoreSetAway) %}
+                            {% set winnerTeamB = (game.scoreSetHome < game.scoreSetAway) %}
                             <tr>
                                 <td>{{ game.number }}</td>
                                 <td>{% if game.date is not null %} {{ game.date|date("d/m") }} {% endif %}</td>
                                 <td>{% if game.date is not null %} {{ game.date|date("H:i") }} {% endif %}</td>
                                 <td>{{ game.cort }}</td>
-                                <td class="{{  game.scoreSetHome > game.scoreSetAway ? "bold" : "" }}"><a href="{{ path('volley_face_team',{'team_id':game.homeTeam.id}) }}"> {{ game.homeTeam.name }} </a></td>
-                                <td class="{{  game.scoreSetHome < game.scoreSetAway ? "bold" : "" }}"><a href="{{ path('volley_face_team',{'team_id':game.awayTeam.id}) }}"> {{ game.awayTeam.name }} </a></td>
+                                <td>{{ winnerTeamA ? "<strong>" : "" }}<a href="{{ path('volley_face_team',{'team_id':game.homeTeam.id}) }}"> {{ game.homeTeam.name }} </a>{{ winnerTeamA ? "</strong>" : "" }}</td>
+                                <td>{{ winnerTeamB ? "<strong>" : "" }}<a href="{{ path('volley_face_team',{'team_id':game.awayTeam.id}) }}"> {{ game.awayTeam.name }} </a>{{ winnerTeamB ? "</strong>" : "" }}</td>
                                 <td>{{ game.score }}</td>
                                 <td>{{ game.duration }}</td>
                             </tr>
