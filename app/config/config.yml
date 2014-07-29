@@ -122,7 +122,7 @@ stfalcon_tinymce:
     include_jquery: true
     tinymce_jquery: true
     selector: ".tinymce"
-    base_url: "http://volleyface.com.localhost/" # this parameter may be included if you need to override the assets_base_urls for your template engine (to override a CDN base url)
+    base_url: %base_url% # this parameter may be included if you need to override the assets_base_urls for your template engine (to override a CDN base url)
     # Get current language from the parameters.ini
     language: %locale%
     # Custom buttons
@@ -154,3 +154,13 @@ stfalcon_tinymce:
              plugins: ["bbcode, code, link, preview"]
              menubar: false
              toolbar1: "bold,italic,underline,undo,redo,link,unlink,removeformat,cleanup,code,preview"
+
+genemu_form:
+#    select2: ~
+    select2:
+      enabled: true
+      configs:
+          placeholder: Select a value
+          width: off
+          allowClear: false
+          minimumInputLength: 0

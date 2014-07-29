@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new Avalanche\Bundle\ImagineBundle\AvalancheImagineBundle(),
             new Volley\Bundle\UserBundle\VolleyUserBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new Genemu\Bundle\FormBundle\GenemuFormBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

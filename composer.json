@@ -31,7 +31,8 @@
         "avalanche123/imagine-bundle": "2.1.2",
         "doctrine/migrations": "dev-master",
         "doctrine/doctrine-migrations-bundle": "dev-master",
-        "gedmo/doctrine-extensions": "~2.3.9"
+        "gedmo/doctrine-extensions": "~2.3.9",
+        "genemu/form-bundle": "~2.2.2"
     },
     "scripts": {
         "post-install-cmd": [
