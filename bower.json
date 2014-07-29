@@ -1,0 +1,20 @@
+{
+  "name": "volleyball.ua",
+  "version": "0.0.0",
+  "homepage": "https://github.com/moby18/volleyface.com",
+  "authors": [
+    "Andrey <moby.ekreative@gmail.com>"
+  ],
+  "description": "Symfony2 project volleyball.ua",
+  "keywords": [
+    "volleyball"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
