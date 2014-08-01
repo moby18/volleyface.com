@@ -97,7 +97,6 @@ class Post
      *
      * @ORM\Column(name="source", type="string", length=255, nullable=true)
      */
-    private $source;
 
     /**
      * @var string
