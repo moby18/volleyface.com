@@ -97,9 +97,9 @@ footer .footer-below {
     color: #000000;
 }
 
-#tours > div:last-child > .circle {
-    color: lightslategray;
-}
+/*#tours > div:last-child > .circle {*/
+    /*color: lightslategray;*/
+/*}*/
 
 /* Home Images */
 .medals {
