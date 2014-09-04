@@ -55,8 +55,7 @@
 
     <!-- Bootstrap Core CSS -->
     {% block styles %}
-        <link href="{{ asset('bundles/volleyface/css/bootstrap.css') }}" rel="stylesheet">
-        {#<link href="{{ asset('bundles/volleyface/css/freelancer.css') }}" rel="stylesheet" type="text/css">#}
+        <link href="{{ asset('bundles/volleyface/bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('bundles/volleyface/css/modern-business.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('bundles/volleyface/css/styles.css') }}" rel="stylesheet">
 
@@ -67,7 +66,7 @@
 
 
     <!-- Fonts -->
-    <link href="{{ asset('bundles/volleyface/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/volleyface/bower_components/components-font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
     <link href="{{ asset('bundles/volleyface/images/favicon.ico') }}" rel="shortcut icon">
@@ -224,8 +223,8 @@
 <!-- /.container -->
 
 {% block scripts %}
-<script src="{{ asset('bundles/volleyface/js/jquery-1.10.2.js') }}"></script>
-<script src="{{ asset('bundles/volleyface/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('bundles/volleyface/bower_components/jquery/dist/jquery.min.js') }}"></script>
+<script src="{{ asset('bundles/volleyface/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('bundles/volleyface/js/modern-business.js') }}"></script>
 {% endblock %}
 
