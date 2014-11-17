@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new Volley\Bundle\UserBundle\VolleyUserBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Genemu\Bundle\FormBundle\GenemuFormBundle(),
+            new Volley\StatBundle\VolleyStatBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
