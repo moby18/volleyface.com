@@ -17,7 +17,7 @@ class TeamType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('seasons')
+            ->add('seasons',null,array('required'=>false))
             ->add('image', 'file', array(
                     'data_class' => null,
                     'required' => false
