@@ -2,6 +2,14 @@ volley_face_homepage:
     pattern:  /
     defaults: { _controller: VolleyFaceBundle:Default:index }
 
+volley_face_stat_tournament:
+    pattern:  /stat/season/{season_id}/tournament/{tournament_id}
+    defaults: { _controller: VolleyFaceBundle:Default:statTournament }
+
+volley_face_stat_team:
+    pattern:  /stat/team/{team_id}
+    defaults: { _controller: VolleyFaceBundle:Default:statTeam }
+
 volley_face_tournament:
     pattern:  /season/{season_id}/tournament/{tournament_id}
     defaults: { _controller: VolleyFaceBundle:Default:tournament }
