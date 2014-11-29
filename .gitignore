@@ -2,6 +2,7 @@
 /web/uploads/
 /web/assetic
 /web/js
+/web/.htpasswd
 /app/bootstrap.php.cache
 /app/cache/*
 /app/config/parameters.yml
@@ -23,5 +24,4 @@ Thumbs.db
 *~
 xcuserstate
 xcuserdata
-
 node_modules
