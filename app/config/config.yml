@@ -35,9 +35,13 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:        [ VolleyFaceBundle ]
     #java: /usr/bin/java
     filters:
+        less:
+            node: C:\Program Files\nodejs\node.exe
+            node_paths: [c:\Program Files\nodejs\node_modules]
+            apply_to: "\.less$"
         cssrewrite: ~
 #        uglifycss:
 #            bin: %uglifycss_path%
@@ -46,7 +50,7 @@ assetic:
     assets:
 #        jquery:
 #            inputs:
-#                - %kernel.root_dir%/../vendor/frameworks/jquery/jquery.js
+#                - %kernel.root_dir%/../src/Volley/Bundle/FaceBundle/Resources/public/bower_components/jquery/dist/jquery.min.js
         bootstrap_css:
             inputs:
 #                - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap.css
@@ -96,6 +100,14 @@ assetic:
 #                - @jquery
                 - @bootstrap_js
                 - %kernel.root_dir%/../src/Volley/Bundle/FaceBundle/Resources/public/js/modern-business.js
+        volley_gallery_js:
+            inputs:
+#                - @jquery
+                - %kernel.root_dir%/../src/Volley/Bundle/FaceBundle/Resources/public/bower_components/fancybox/source/jquery.fancybox.pack.js
+                - %kernel.root_dir%/../src/Volley/Bundle/FaceBundle/Resources/public/js/gallery.js
+        volley_gallery_css:
+            inputs:
+#                - %kernel.root_dir%/../src/Volley/Bundle/FaceBundle/Resources/public/bower_components/fancybox/source/jquery.fancybox.css
 
 # Doctrine Configuration
 doctrine:
@@ -148,13 +160,6 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
-
-assetic:
-    filters:
-        less:
-            node: C:\Program Files\nodejs\node.exe
-            node_paths: [c:\Program Files\nodejs\node_modules]
-            apply_to: "\.less$"
 
 mopa_bootstrap:
     form: ~  # Adds twig form theme  support
