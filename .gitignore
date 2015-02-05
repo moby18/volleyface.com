@@ -2,6 +2,7 @@
 /web/uploads/
 /web/assetic
 /web/js
+/web/css
 /web/.htpasswd
 /app/bootstrap.php.cache
 /app/cache/*
