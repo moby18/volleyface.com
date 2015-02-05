@@ -218,3 +218,10 @@ footer .footer-below {
 #player .row.player_data:hover {
     border-right: 5px solid black;
 }
+
+/* Gallery */
+.gallery
+{
+    display: inline-block;
+    margin-top: 20px;
+}

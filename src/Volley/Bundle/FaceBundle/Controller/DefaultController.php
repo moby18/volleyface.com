@@ -213,4 +213,16 @@ class DefaultController extends Controller
         ));
     }
 
+    public function genAction()
+    {
+//        for ($i = 1; $i <=98; $i++) {
+//            print_r('<p><img src="../../../web/uploads/images/2014/12/07/Image'.str_pad($i, 5, '0', STR_PAD_LEFT).'.jpg" alt="" width="1140" height="auto"></p>');
+//        }
+        for ($i = 1; $i <=41; $i++) {
+            $path = '../../../web/uploads/images/2015/01/24/Image'.str_pad($i, 5, '0', STR_PAD_LEFT).'.jpg';
+            print_r('<div class="col-sm-4 col-xs-6 col-md-3 col-lg-3"><a class="thumbnail fancybox" rel="ligthbox" href="'.$path.'"><img class="img-responsive" alt="" src="'.$path.'"/></a></div>');
+        }
+        exit;
+    }
+
 }
