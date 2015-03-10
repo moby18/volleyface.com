@@ -187,7 +187,9 @@ class DefaultController extends Controller
         }
 
         usort($table, function ($a, $b) {
-            return strcmp($a['points'], $b['points']);
+//            return strcmp($b['points'], $a['points']);
+            if($a['points']==$b['points']) return 0;
+            return $a['points'] < $b['points']?1:-1;
         });
 
         $tours = $season->getTours();
