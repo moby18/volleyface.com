@@ -2,56 +2,60 @@
 
 {% block content %}
 
-    <div class="section tours">
+    {#<div class="section tours">#}
 
-        <div class="container">
+        {#<div class="container">#}
 
-            <div class="row" id="tours">
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                    <div class="circle">
-                        <h2><i class="fa fa-check-circle"></i> Тур 1</h2>
-                        <p>27-28 червня</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                    <div class="circle">
-                        <h2><i class="fa fa-check-circle"></i> Тур 2</h2>
-                        <p>12-13 липня</p>
-                    </div>
+            {#<div class="row" id="tours">#}
+                {#<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">#}
+                    {#<div class="circle">#}
+                        {#<h2><i class="fa fa-check-circle"></i> Тур 1</h2>#}
+                        {#<p>27-28 червня</p>#}
+                    {#</div>#}
+                {#</div>#}
+                {#<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">#}
+                    {#<div class="circle">#}
+                        {#<h2><i class="fa fa-check-circle"></i> Тур 2</h2>#}
+                        {#<p>12-13 липня</p>#}
+                    {#</div>#}
 
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                    <div class="circle">
-                        <h2><i class="fa fa-check-circle"></i>Фінал</h2>
-                        <p>16-17 серпня</p>
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
-
-            <hr>
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.section -->
-
-    {#<div class="container">#}
-
-        {#<div class="row well">#}
-            {#<div class="col-lg-8 col-md-8">#}
-                {#<h4>Запрошуємо взяти участь у другому турі Відкритого чемпіонату Черкаської області з пляжного волейболу, який буде проводитися 12-13 липня на пляжі "Живчик" </h4>#}
-                {#&#123;&#35;<p>For more templates and more page options that you can integrate into this website template, visit Start Bootstrap!</p>&#35;&#125;#}
+                {#</div>#}
+                {#<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">#}
+                    {#<div class="circle">#}
+                        {#<h2><i class="fa fa-check-circle"></i>Фінал</h2>#}
+                        {#<p>16-17 серпня</p>#}
+                    {#</div>#}
+                {#</div>#}
             {#</div>#}
-            {#<div class="col-lg-4 col-md-4">#}
-                {#<a class="btn btn-lg btn-primary pull-right" href="{{ path('volley_face_zayavka') }}">Заповнити заявку</a>#}
-            {#</div>#}
+            {#<!-- /.row -->#}
+
+            {#<hr>#}
+
         {#</div>#}
-        {#<!-- /.row -->#}
+        {#<!-- /.container -->#}
 
     {#</div>#}
-    {#<!-- /.container -->#}
+    <!-- /.section -->
+
+    <div class="section">
+
+    <div class="container">
+
+        <div class="row well">
+            <div class="col-lg-8 col-md-8">
+                <h4>Запрошуємо взяти участь у 1-му турі Відкритого чемпіонату Черкаської області з пляжного волейболу 2015 року, який буде проводитися 20-21 червня на пляжі "Живчик" в місті Черкаси. </h4>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                {#<a class="btn btn-lg btn-primary pull-right" href="{{ path('volley_face_zayavka') }}">Заповнити заявку</a>#}
+                <a class="btn btn-lg btn-primary pull-right" target="_blank" href="https://docs.google.com/forms/d/1m1K1qPvIWw4m-9pVGrtUpo732Q16j2o-wbykfNFBuAs/viewform">Подати заявку</a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    </div>
 
     <div class="section">
 
