@@ -26,3 +26,4 @@ Thumbs.db
 xcuserstate
 xcuserdata
 node_modules
+/src/Volley/Bundle/FaceBundle/Resources/public/bower_components
