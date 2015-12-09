@@ -18,7 +18,9 @@
         <link href="{{ asset('bundles/volleyface/css/styles.css') }}" rel="stylesheet">
     {% endblock %}
 
-    {{ tinymce_init() }}
+    {{ tinymce_init({
+        'moxiemanager_image_template': '<a class="thumbnail fancybox" href="{$url}" rel="ligthbox"><img class="img-responsive" src="{$meta.thumb_url}" alt="" /></a>'
+    }) }}
 
     <link href="{{ asset('bundles/volleyface/images/favicon.ico') }}" rel="shortcut icon">
 </head>
@@ -60,8 +62,7 @@
                 <li class="active"><a href="{{ path("tournament") }}">Tournaments</a></li>
                 <li class="active"><a href="{{ path("team") }}">Teams</a></li>
                 <li class="active"><a href="{{ path("admin_round") }}">Rounds</a></li>
-                <li class="active"><a href="{{ path("game") }}">Games</a></li>admin.html.twig
-                layout.html.twig
+                <li class="active"><a href="{{ path("game") }}">Games</a></li>
             </ul>
             <ul class="nav nav-sidebar">
                 <li><a href="{{ path("stat_country") }}">Countries</a></li>
@@ -78,7 +79,6 @@
             {% block body %}
             {% endblock %}
 
-            </div>
         </div>
     </div>
 </div>
