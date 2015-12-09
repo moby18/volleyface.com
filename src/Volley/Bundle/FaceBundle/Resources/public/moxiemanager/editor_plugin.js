@@ -415,7 +415,7 @@
                                 html += " "
                             }
                             if (isImage) {
-                                html += processTemplate(editor.getParam("moxiemanager_image_template", '<img src="{$meta.url}" ' + 'width="{$meta.width}" height="{$meta.height}">'), file);
+                                //html += processTemplate(editor.getParam("moxiemanager_image_template", '<img src="{$meta.url}" ' + 'width="{$meta.width}" height="{$meta.height}">'), file);
                                 html += processTemplate(editor.getParam("moxiemanager_image_template", '<a class="thumbnail fancybox" href="{$url}" rel="ligthbox"><img class="img-responsive" src="{$meta.thumb_url}" alt="" /></a>'), file);
                             } else {
                                 html += processTemplate(editor.getParam("moxiemanager_file_template", '<a href="{$url}">{$name}</a>'), file)
