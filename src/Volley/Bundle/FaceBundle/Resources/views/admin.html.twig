@@ -18,7 +18,9 @@
         <link href="{{ asset('bundles/volleyface/css/styles.css') }}" rel="stylesheet">
     {% endblock %}
 
-    {{ tinymce_init() }}
+    {{ tinymce_init({
+        'moxiemanager_image_template': '<a class="thumbnail fancybox" href="{$url}" rel="ligthbox"><img class="img-responsive" "src="{$meta.thumb_url}" alt="" /></a>'
+    }) }}
 
     <link href="{{ asset('bundles/volleyface/images/favicon.ico') }}" rel="shortcut icon">
 </head>

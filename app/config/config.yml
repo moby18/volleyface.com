@@ -191,6 +191,7 @@ stfalcon_tinymce:
     external_plugins:
         moxiemanager:
             url: "asset[bundles/volleyface/moxiemanager/editor_plugin.js]"
+    moxiemanager_image_template: '<a class="thumbnail fancybox" href="{$url}" rel="ligthbox"><img class="img-responsive" src="src="{$meta.thumb_url}"" alt="" /></a>'
     theme:
         # Simple theme: same as default theme
         simple: ~
