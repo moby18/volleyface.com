@@ -416,6 +416,7 @@
                             }
                             if (isImage) {
                                 //html += processTemplate(editor.getParam("moxiemanager_image_template", '<img src="{$meta.url}" ' + 'width="{$meta.width}" height="{$meta.height}">'), file);
+
                                 html += processTemplate(editor.getParam("moxiemanager_image_template", '<div class="col-sm-4 col-xs-6 col-md-3 col-lg-3"><a class="thumbnail fancybox" href="{$url}" rel="ligthbox"><img class="img-responsive" src="{$meta.thumb_url}" alt="" /></a></div>'), file);
                             } else {
                                 html += processTemplate(editor.getParam("moxiemanager_file_template", '<a href="{$url}">{$name}</a>'), file)
