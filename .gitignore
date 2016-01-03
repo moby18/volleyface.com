@@ -13,7 +13,7 @@
 /build/
 /vendor/
 /bin/
-/composer.phar
+/composer.pharcd ..cd
 .idea
 .DS_Store
 .DS_Store?
@@ -26,4 +26,5 @@ Thumbs.db
 xcuserstate
 xcuserdata
 node_modules
-/src/Volley/Bundle/FaceBundle/Resources/public/bower_components
+/src/Volley/FaceBundle/Resources/public/bower_components
+/src/Volley/FaceBundle/Resources/public/bower_components

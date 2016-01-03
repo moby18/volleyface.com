@@ -50,11 +50,11 @@ assetic:
     assets:
 #        jquery:
 #            inputs:
-#                - %kernel.root_dir%/../src/Volley/Bundle/FaceBundle/Resources/public/bower_components/jquery/dist/jquery.min.js
+#                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/bower_components/jquery/dist/jquery.min.js
         bootstrap_css:
             inputs:
 #                - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap.css
-                - %kernel.root_dir%/../src/Volley/Bundle/FaceBundle/Resources/public/bower_components/bootstrap/dist/css/bootstrap.css
+                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/bower_components/bootstrap/dist/css/bootstrap.css
         bootstrap_js:
             inputs:
                 - %kernel.root_dir%/../vendor/twbs/bootstrap/js/transition.js
@@ -72,42 +72,42 @@ assetic:
         volley_css:
             inputs:
                 - @bootstrap_css
-                - %kernel.root_dir%/../src/Volley/Bundle/FaceBundle/Resources/public/css/modern-business.css
-                - %kernel.root_dir%/../src/Volley/Bundle/FaceBundle/Resources/public/css/styles.css
-#                - %kernel.root_dir%/../src/Volley/Bundle/FaceBundle/Resources/public/bower_components/components-font-awesome/css/font-awesome.css
+                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/css/modern-business.css
+                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/css/styles.css
+#                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/bower_components/components-font-awesome/css/font-awesome.css
 #            filters:
 #                - ?uglifycss
         volley_css_ie:
             inputs:
-                - %kernel.root_dir%/../src/Volley/Bundle/FaceBundle/Resources/public/css/ie.css
+                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/css/ie.css
 #            filters:
 #                - ?uglifycss
         volley_admin_css:
             inputs:
                 - @bootstrap_css
-                - %kernel.root_dir%/../src/Volley/Bundle/FaceBundle/Resources/public/css/dashboard.css
-#                - %kernel.root_dir%/../src/Volley/Bundle/FaceBundle/Resources/public/css/admin/styles.css
+                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/css/dashboard.css
+#                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/css/admin/styles.css
 #            filters:
 #                - ?uglifycss
         volley_header_js:
             inputs:
-                - %kernel.root_dir%/../src/Volley/Bundle/FaceBundle/Resources/public/js/html5shiv.js
-                - %kernel.root_dir%/../src/Volley/Bundle/FaceBundle/Resources/public/js/respond.min.js
+                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/js/html5shiv.js
+                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/js/respond.min.js
 #            filters:
 #                - ?uglifyjs
         volley_footer_js:
             inputs:
 #                - @jquery
                 - @bootstrap_js
-                - %kernel.root_dir%/../src/Volley/Bundle/FaceBundle/Resources/public/js/modern-business.js
+                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/js/modern-business.js
         volley_gallery_js:
             inputs:
 #                - @jquery
-                - %kernel.root_dir%/../src/Volley/Bundle/FaceBundle/Resources/public/bower_components/fancybox/source/jquery.fancybox.pack.js
-                - %kernel.root_dir%/../src/Volley/Bundle/FaceBundle/Resources/public/js/gallery.js
+                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/bower_components/fancybox/source/jquery.fancybox.pack.js
+                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/js/gallery.js
         volley_gallery_css:
             inputs:
-#                - %kernel.root_dir%/../src/Volley/Bundle/FaceBundle/Resources/public/bower_components/fancybox/source/jquery.fancybox.css
+#                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/bower_components/fancybox/source/jquery.fancybox.css
 
 # Doctrine Configuration
 doctrine:
@@ -168,7 +168,7 @@ mopa_bootstrap:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
-    user_class: Volley\Bundle\UserBundle\Entity\User
+    user_class: Volley\UserBundle\Entity\User
 
 doctrine_migrations:
     dir_name: %kernel.root_dir%/DoctrineMigrations
