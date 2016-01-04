@@ -85,7 +85,7 @@
                 <span class="icon-bar"></span>
             </button>
             <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
-            <a class="navbar-brand" href="{{ path('volley_web_homepage') }}" title="Волейбол в Україні - volleyball.ua"></a>
+            <a class="navbar-brand" href="{{ path('volley_face_homepage') }}" title="Волейбол в Україні - volleyball.ua"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -97,7 +97,7 @@
                 </li>
                 <li><a href="{{ path("volley_face_blog",{'category_id': 2}) }}">Відео</a>
                 </li>
-                <li><a href="{{ path("volley_face_contacts") }}">{% trans %}Contact Us{% endtrans %}</a></li>
+                {#<li><a href="{{ path("volley_face_contacts") }}">{% trans %}Contact Us{% endtrans %}</a></li>#}
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -113,34 +113,34 @@
 
 
     <footer class="text-center">
-        <div class="footer-above">
-            <div class="container">
-                <div class="row">
-                    <div class="footer-col col-md-4">
-                        <h3>Адреса</h3>
-                        <p>Місто Черкаси, вулиця Героїв Дніпра 49
-                            <br>пляж "Живчик", 18000 </p>
-                    </div>
-                    <div class="footer-col col-md-4">
-                        <h3>Соціальні сторінки</h3>
-                        <ul class="list-inline">
-                            <li><a target="_blank" href="http://vk.com/volleyballinua" class="btn-social btn-outline"><i class="fa fa-fw fa-vk"></i></a>
-                            </li>
-                            <li><a target="_blank" href="https://www.facebook.com/volleyball.in.ua" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
-                            </li>
-                            {#<li><a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>#}
+        {#<div class="footer-above">#}
+            {#<div class="container">#}
+                {#<div class="row">#}
+                    {#<div class="footer-col col-md-4">#}
+                        {#<h3>Адреса</h3>#}
+                        {#<p>Місто Черкаси, вулиця Героїв Дніпра 49#}
+                            {#<br>пляж "Живчик", 18000 </p>#}
+                    {#</div>#}
+                    {#<div class="footer-col col-md-4">#}
+                        {#<h3>Соціальні сторінки</h3>#}
+                        {#<ul class="list-inline">#}
+                            {#<li><a target="_blank" href="http://vk.com/volleyballinua" class="btn-social btn-outline"><i class="fa fa-fw fa-vk"></i></a>#}
                             {#</li>#}
-                            <li><a target="_blank" href="https://twitter.com/volleyballinua" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer-col col-md-4">
-                        <h3>Про нас</h3>
-                        <p>Проект Асоціації пляжного волейболу у Черкаській області разом з ВОЛЕЙБОЛ.УА висвітлюватиме події пляжного волейболу регіону.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+                            {#<li><a target="_blank" href="https://www.facebook.com/volleyball.in.ua" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>#}
+                            {#</li>#}
+                            {#&#123;&#35;<li><a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>&#35;&#125;#}
+                            {#&#123;&#35;</li>&#35;&#125;#}
+                            {#<li><a target="_blank" href="https://twitter.com/volleyballinua" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>#}
+                            {#</li>#}
+                        {#</ul>#}
+                    {#</div>#}
+                    {#<div class="footer-col col-md-4">#}
+                        {#<h3>Про нас</h3>#}
+                        {#<p>Проект Асоціації пляжного волейболу у Черкаській області разом з ВОЛЕЙБОЛ.УА висвітлюватиме події пляжного волейболу регіону.</p>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
         <div class="footer-below">
             <div class="container">
                 <div class="row">
@@ -161,7 +161,7 @@
                                 <i class="fa fa-twitter"></i>
                             </a>
                             {#<a href="https://plus.google.com/+VolleyballUa" target="_blank" class="social-icon icon-google-plus" title="Google Plus">#}
-                                {#<i class="fa fa-google-plus"></i>#}
+                            {#<i class="fa fa-google-plus"></i>#}
                             {#</a>#}
                         </div>
                     </div>
