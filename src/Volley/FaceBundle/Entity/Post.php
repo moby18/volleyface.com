@@ -3,9 +3,11 @@
 namespace Volley\FaceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Volley\UserBundle\Entity\User;
 
 /**
  * Post
@@ -36,7 +38,7 @@ class Post
     /**
      * @var string
      *
-     * @Gedmo\Slug(fields={"title","id"},updatable=true)
+     * @Gedmo\Slug(fields={"id","title"}, updatable=true)
      * @ORM\Column(name="slug", type="string", length=255, unique=true)
      */
     private $slug;
@@ -64,12 +66,21 @@ class Post
     private $category;
 
     /**
+     * @Gedmo\Timestampable(on="create")
      * @Doctrine\ORM\Mapping\Column(type="datetime")
      */
     private $created;
 
     /**
-     * @Doctrine\ORM\Mapping\Column(type="date")
+     * @Gedmo\Timestampable(on="update")
+     * @Doctrine\ORM\Mapping\Column(type="datetime")
+     */
+    private $updated;
+
+    /**
+     * @var /DateTime
+     *
+     * @Doctrine\ORM\Mapping\Column(type="datetime")
      */
     private $published;
 
@@ -79,17 +90,15 @@ class Post
     private $content;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="created_by", type="string", length=255, nullable=true)
-     */
+     * @ORM\ManyToOne(targetEntity="\Volley\UserBundle\Entity\User", inversedBy="posts")
+     * @ORM\JoinColumn(name="createdBy", referencedColumnName="id")
+     **/
     private $createdBy;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="modified_by", type="string", length=255, nullable=true)
-     */
+     * @ORM\ManyToOne(targetEntity="\Volley\UserBundle\Entity\User", inversedBy="modified_posts")
+     * @ORM\JoinColumn(name="modifiedBy", referencedColumnName="id")
+     **/
     private $modifiedBy;
 
     /**
@@ -153,93 +162,10 @@ class Post
      */
     public $path;
 
-    public function getAbsolutePath()
-    {
-        return null === $this->path
-            ? null
-            : $this->getUploadRootDir() . '/' . $this->path;
-    }
-
-    public function getAbsoluteCachePath()
-    {
-        return null === $this->path
-            ? null
-            : $this->getCacheUploadRootDir() . '/' . $this->path;
-    }
-
-    public function getWebPath()
-    {
-        return null === $this->path
-            ? null
-            : $this->getUploadDir() . '/' . $this->path;
-    }
-
-    public function getUploadRootDir()
-    {
-        // the absolute directory path where uploaded
-        // documents should be saved
-        return __DIR__ . '/../../../../../web/' . $this->getUploadDir();
-    }
-
-    public function getCacheUploadRootDir()
-    {
-        // the absolute directory path where uploaded
-        // documents should be saved
-        return __DIR__ . '/../../../../../web/' . $this->getUploadCacheDir();
-    }
-
-    public function getUploadDir()
-    {
-        // get rid of the __DIR__ so it doesn't screw up
-        // when displaying uploaded doc/image in the view.
-        return '/uploads/posts';
-    }
-
-    public function getUploadCacheDir()
-    {
-        // get rid of the __DIR__ so it doesn't screw up
-        // when displaying uploaded doc/image in the view.
-        return 'media\cache\events_logo\uploads\posts';
-    }
-
-    public function upload()
-    {
-        // the file property can be empty if the field is not required
-        if (null === $this->getFile()) {
-            return;
-        }
-
-        // use the original file name here but you should
-        // sanitize it at least to avoid any security issues
-
-        // move takes the target directory and then the
-        // target filename to move to
-        $this->getFile()->move(
-            $this->getUploadRootDir(),
-            $this->getFile()->getClientOriginalName()
-        );
-
-        // set the path property to the filename where you've saved the file
-        $this->path = $this->getFile()->getClientOriginalName();
-
-        // clean up the file property as you won't need it anymore
-        $this->file = null;
-    }
-
     /**
      * @Assert\File(maxSize="6000000")
      */
     private $file;
-
-    /**
-     * Sets file.
-     *
-     * @param UploadedFile $file
-     */
-    public function setFile(UploadedFile $file = null)
-    {
-        $this->file = $file;
-    }
 
     /**
      * Get file.
@@ -251,6 +177,124 @@ class Post
         return $this->file;
     }
 
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('file', new Assert\File(array(
+            'maxSize' => 6000000,
+        )));
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->path
+            ? null
+            : $this->getUploadRootDir().'/'.$this->path;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->path
+            ? null
+            : $this->getUploadDir().'/'.$this->path;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // the absolute directory path where uploaded
+        // documents should be saved
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return '/uploads/posts';
+    }
+
+    private $temp;
+
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+        // check if we have an old image path
+        if (is_file($this->getAbsolutePath())) {
+            // store the old name to delete after the update
+            $this->temp = $this->getAbsolutePath();
+        } else {
+            $this->path = 'initial';
+        }
+
+        if (null !== $this->getFile()) {
+            $date = new \DateTime();
+            $this->path = $date->getTimestamp() . uniqid() . '.' . $this->getFile()->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+//        if (null !== $this->getFile()) {
+//            $date = new \DateTime();
+//            $this->path = $date->getTimestamp().uniqid().'.'.$this->getFile()->guessExtension();
+//        }
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null === $this->getFile()) {
+            return;
+        }
+
+        // check if we have an old image
+        if (isset($this->temp)) {
+            // delete the old image
+            unlink($this->temp);
+            // clear the temp image path
+            $this->temp = null;
+        }
+
+        // you must throw an exception here if the file cannot be moved
+        // so that the entity is not persisted to the database
+        // which the UploadedFile move() method does
+        $this->getFile()->move(
+            $this->getUploadRootDir(),
+            $this->path
+        );
+
+        $this->setFile(null);
+    }
+
+    /**
+     * @ORM\PreRemove()
+     */
+    public function storeFilenameForRemove()
+    {
+        $this->temp = $this->getAbsolutePath();
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if (isset($this->temp)) {
+            unlink($this->temp);
+        }
+    }
+
     function __construct()
     {
         $this->state = true;
@@ -260,7 +304,7 @@ class Post
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -283,34 +327,11 @@ class Post
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
         return $this->title;
-    }
-
-    /**
-     * Set alias
-     *
-     * @param string $alias
-     * @return Post
-     */
-    public function setAlias($alias)
-    {
-        $this->alias = $alias;
-
-        return $this;
-    }
-
-    /**
-     * Get alias
-     *
-     * @return string 
-     */
-    public function getAlias()
-    {
-        return $this->alias;
     }
 
     /**
@@ -329,7 +350,7 @@ class Post
     /**
      * Get text
      *
-     * @return string 
+     * @return string
      */
     public function getText()
     {
@@ -352,7 +373,7 @@ class Post
     /**
      * Get state
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getState()
     {
@@ -375,7 +396,7 @@ class Post
     /**
      * Get category
      *
-     * @return string 
+     * @return string
      */
     public function getCategory()
     {
@@ -385,7 +406,7 @@ class Post
     /**
      * Set createdBy
      *
-     * @param string $createdBy
+     * @param User $createdBy
      * @return Post
      */
     public function setCreatedBy($createdBy)
@@ -398,7 +419,7 @@ class Post
     /**
      * Get createdBy
      *
-     * @return string 
+     * @return User
      */
     public function getCreatedBy()
     {
@@ -406,9 +427,15 @@ class Post
     }
 
     /**
-     * Set modifiedBy
-     *
-     * @param string $modifiedBy
+     * @return User
+     */
+    public function getModifiedBy()
+    {
+        return $this->modifiedBy;
+    }
+
+    /**
+     * @param mixed $modifiedBy
      * @return Post
      */
     public function setModifiedBy($modifiedBy)
@@ -416,16 +443,6 @@ class Post
         $this->modifiedBy = $modifiedBy;
 
         return $this;
-    }
-
-    /**
-     * Get modifiedBy
-     *
-     * @return string 
-     */
-    public function getModifiedBy()
-    {
-        return $this->modifiedBy;
     }
 
     /**
@@ -444,7 +461,7 @@ class Post
     /**
      * Get source
      *
-     * @return string 
+     * @return string
      */
     public function getSource()
     {
@@ -467,7 +484,7 @@ class Post
     /**
      * Get ordering
      *
-     * @return string 
+     * @return string
      */
     public function getOrdering()
     {
@@ -490,7 +507,7 @@ class Post
     /**
      * Get metakey
      *
-     * @return string 
+     * @return string
      */
     public function getMetakey()
     {
@@ -513,7 +530,7 @@ class Post
     /**
      * Get metadescr
      *
-     * @return string 
+     * @return string
      */
     public function getMetadescr()
     {
@@ -536,7 +553,7 @@ class Post
     /**
      * Get hits
      *
-     * @return integer 
+     * @return integer
      */
     public function getHits()
     {
@@ -559,7 +576,7 @@ class Post
     /**
      * Get metadata
      *
-     * @return string 
+     * @return string
      */
     public function getMetadata()
     {
@@ -582,7 +599,7 @@ class Post
     /**
      * Get featured
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getFeatured()
     {
@@ -605,7 +622,7 @@ class Post
     /**
      * Get language
      *
-     * @return string 
+     * @return string
      */
     public function getLanguage()
     {
@@ -628,7 +645,7 @@ class Post
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -651,11 +668,27 @@ class Post
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
         return $this->created;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * @param mixed $updated
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
     }
 
     /**
@@ -674,7 +707,7 @@ class Post
     /**
      * Get published
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getPublished()
     {
@@ -697,7 +730,7 @@ class Post
     /**
      * Get content
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {
@@ -727,7 +760,7 @@ class Post
     /**
      * Get path
      *
-     * @return string 
+     * @return string
      */
     public function getPath()
     {

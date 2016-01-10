@@ -15,3 +15,6 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     base_url: "http://volleyface.com.localhost/"
+
+    uglifycss_path: '%kernel.root_dir%/../node_modules/.bin/uglifycss'
+    uglifyjs_path: '%kernel.root_dir%/../node_modules/.bin/uglifyjs'

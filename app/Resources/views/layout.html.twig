@@ -85,7 +85,7 @@
                 <span class="icon-bar"></span>
             </button>
             <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
-            <a class="navbar-brand" href="{{ path('volley_face_homepage') }}" title="Волейбол в Україні - volleyball.ua"></a>
+            <a class="navbar-brand" href="{{ path('volley_web_homepage') }}" title="Волейбол в Україні - volleyball.ua"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -95,7 +95,7 @@
                 </li>
                 <li><a href="{{ path("volley_face_tournament",{'season_id': 1, 'tournament_id': 3}) }}">Фінальний тур</a>
                 </li>
-                <li><a href="{{ path("volley_face_blog",{'category_id': 2}) }}">Відео</a>
+                <li><a href="{{ path("volley_face_blog",{'category_slug': 'video'}) }}">Відео</a>
                 </li>
                 {#<li><a href="{{ path("volley_face_contacts") }}">{% trans %}Contact Us{% endtrans %}</a></li>#}
             </ul>

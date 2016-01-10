@@ -1,44 +1,3 @@
-volley_face_homepage:
-    pattern:  /
-    defaults: { _controller: VolleyFaceBundle:Default:index }
-
-volley_gen:
-    pattern:  /gen
-    defaults: { _controller: VolleyFaceBundle:Default:gen }
-
-volley_face_stat_tournament:
-    pattern:  /stat/season/{season_id}/tournament/{tournament_id}
-    defaults: { _controller: VolleyFaceBundle:Default:statTournament }
-
-volley_face_stat_team:
-    pattern:  /stat/team/{team_id}
-    defaults: { _controller: VolleyFaceBundle:Default:statTeam }
-
-volley_face_tournament:
-    pattern:  /season/{season_id}/tournament/{tournament_id}
-    defaults: { _controller: VolleyFaceBundle:Default:tournament }
-
-volley_face_team:
-    pattern:  /team/{team_id}
-    defaults: { _controller: VolleyFaceBundle:Default:team }
-
-volley_face_player:
-    pattern:  /player/{player_id}
-    defaults: { _controller: VolleyFaceBundle:Default:player }
-
-volley_face_post:
-    pattern:  /post/{post_id}
-    defaults: { _controller: VolleyFaceBundle:Default:post }
-
-volley_face_blog:
-    pattern:  /blog/{category_id}
-    defaults: { _controller: VolleyFaceBundle:Default:blog }
-
-volley_face_zayavka:
-    pattern:  /zayavka
-    defaults: { _controller: VolleyFaceBundle:Default:zayavka }
-
-
 volley_face_admin:
     resource: "@VolleyFaceBundle/Resources/config/routing/admin.yml"
     prefix:   /admin
@@ -75,3 +34,12 @@ VolleyFaceBundle_admin_round:
     resource: "@VolleyFaceBundle/Resources/config/routing/round.yml"
     prefix:   /admin/round
 
+VolleyFaceBundle_admin_slide:
+    resource: "@VolleyFaceBundle/Controller/SlideController.php"
+    prefix:   /admin
+    type:     annotation
+
+volley_face_default:
+    resource: "Volley\FaceBundle\Controller\DefaultController"
+    type: annotation
+    prefix:   /

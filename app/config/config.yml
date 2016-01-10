@@ -2,11 +2,12 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: doctrine_extensions.yml }
+    - { resource: services.yml }
 
 framework:
     #esi:             ~
-    #translator:      { fallback: "%locale%" }
-    translator: ~
+    translator:      { fallback: "%locale%" }
+#    translator: ~
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -23,6 +24,7 @@ framework:
     session:
         # handler_id set to null will use default session handler from php.ini
         handler_id:  ~
+        cookie_lifetime: 86400
     fragments:       ~
     http_method_override: true
 
@@ -30,84 +32,20 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form:
+        resources: ['bootstrap_3_layout.html.twig']
+        # resources: ['bootstrap_3_horizontal_layout.html.twig']
 
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ VolleyFaceBundle ]
-    #java: /usr/bin/java
+    bundles:        [ VolleyFaceBundle,FOSUserBundle]
     filters:
-        less:
-            node: C:\Program Files\nodejs\node.exe
-            node_paths: [c:\Program Files\nodejs\node_modules]
-            apply_to: "\.less$"
-        cssrewrite: ~
-#        uglifycss:
-#            bin: %uglifycss_path%
-#        uglifyjs:
-#            bin: %uglifyjs_path%
-    assets:
-#        jquery:
-#            inputs:
-#                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/bower_components/jquery/dist/jquery.min.js
-        bootstrap_css:
-            inputs:
-#                - %kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap.css
-                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/bower_components/bootstrap/dist/css/bootstrap.css
-        bootstrap_js:
-            inputs:
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/transition.js
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/alert.js
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/button.js
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/carousel.js
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/collapse.js
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/dropdown.js
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/modal.js
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/tooltip.js
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/popover.js
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/scrollspy.js
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/tab.js
-                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/affix.js
-        volley_css:
-            inputs:
-                - @bootstrap_css
-                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/css/modern-business.css
-                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/css/styles.css
-#                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/bower_components/components-font-awesome/css/font-awesome.css
-#            filters:
-#                - ?uglifycss
-        volley_css_ie:
-            inputs:
-                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/css/ie.css
-#            filters:
-#                - ?uglifycss
-        volley_admin_css:
-            inputs:
-                - @bootstrap_css
-                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/css/dashboard.css
-#                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/css/admin/styles.css
-#            filters:
-#                - ?uglifycss
-        volley_header_js:
-            inputs:
-                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/js/html5shiv.js
-                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/js/respond.min.js
-#            filters:
-#                - ?uglifyjs
-        volley_footer_js:
-            inputs:
-#                - @jquery
-                - @bootstrap_js
-                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/js/modern-business.js
-        volley_gallery_js:
-            inputs:
-#                - @jquery
-                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/bower_components/fancybox/source/jquery.fancybox.pack.js
-                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/js/gallery.js
-        volley_gallery_css:
-            inputs:
-#                - %kernel.root_dir%/../src/Volley/FaceBundle/Resources/public/bower_components/fancybox/source/jquery.fancybox.css
+        uglifycss:
+            bin: %uglifycss_path%
+        uglifyjs:
+            bin: %uglifyjs_path%
 
 # Doctrine Configuration
 doctrine:
@@ -127,31 +65,6 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
-        mappings:
-            translatable:
-                type: annotation
-                alias: Gedmo
-                prefix: Gedmo\Translatable\Entity
-                # make sure vendor library location is correct
-                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity/MappedSuperclass"
-
-# app/config/config.yml
-stof_doctrine_extensions:
-    default_locale: en_US
-    # Only used if you activated the Uploadable extension
-    uploadable:
-        # Default file path: This is one of the three ways you can configure the path for the Uploadable extension
-        default_file_path:       %kernel.root_dir%/../web/uploads
-
-        # Mime type guesser class: Optional. By default, we provide an adapter for the one present in the HttpFoundation component of Symfony
-        mime_type_guesser_class: Stof\DoctrineExtensionsBundle\Uploadable\MimeTypeGuesserAdapter
-
-        # Default file info class implementing FileInfoInterface: Optional. By default we provide a class which is prepared to receive an UploadedFile instance.
-        default_file_info_class: Stof\DoctrineExtensionsBundle\Uploadable\UploadedFileInfo
-    orm:
-        default:
-          sluggable:    true
-          translatable: true
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -222,3 +135,27 @@ genemu_form:
           width: off
           allowClear: false
           minimumInputLength: 0
+
+stof_doctrine_extensions:
+    default_locale: en_US
+    orm:
+        default:
+            timestampable: true
+            sluggable: true
+            softdeleteable: true
+            tree: true
+
+liip_imagine:
+    resolvers:
+       default:
+          web_path: ~
+    filter_sets:
+        cache: ~
+        main_pic:
+            quality: 100
+            filters:
+                thumbnail: { size: [555, 350], mode: outbound }
+        main_thumb:
+            quality: 100
+            filters:
+                thumbnail: { size: [278, 175], mode: outbound }
