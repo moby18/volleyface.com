@@ -37,15 +37,15 @@ twig:
         # resources: ['bootstrap_3_horizontal_layout.html.twig']
 
 # Assetic Configuration
-assetic:
-    debug:          "%kernel.debug%"
-    use_controller: false
-    bundles:        [ VolleyFaceBundle,FOSUserBundle]
-    filters:
-        uglifycss:
-            bin: %uglifycss_path%
-        uglifyjs:
-            bin: %uglifyjs_path%
+#assetic:
+#    debug:          "%kernel.debug%"
+#    use_controller: false
+#    bundles:        [ VolleyFaceBundle,FOSUserBundle]
+#    filters:
+#        uglifycss:
+#            bin: %uglifycss_path%
+#        uglifyjs:
+#            bin: %uglifyjs_path%
 
 # Doctrine Configuration
 doctrine:
