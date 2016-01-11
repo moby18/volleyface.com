@@ -31,6 +31,7 @@ class PostRepository extends EntityRepository
             ->setMaxResults($count)
             ->setFirstResult($offset)
             ->orderBy('p.published', 'DESC')
+            ->addOrderBy('p.id', 'DESC')
             ->getQuery()
             ->getResult();
     }

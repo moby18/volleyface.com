@@ -2,6 +2,7 @@
 
 namespace Volley\FaceBundle\Controller;
 
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -21,9 +22,10 @@ class PostController extends Controller
      */
     public function indexAction()
     {
+        /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('VolleyFaceBundle:Post')->findAll();
+        $entities = $em->getRepository('VolleyFaceBundle:Post')->findBy([],['published'=>'DESC','id'=>'DESC']);
 
         return $this->render('VolleyFaceBundle:Post:index.html.twig', array(
             'entities' => $entities,
@@ -43,6 +45,8 @@ class PostController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             $entity->upload();
+
+            $entity->setCreatedBy($this->getUser());
 
             $em->persist($entity);
             $em->flush();
@@ -112,6 +116,27 @@ class PostController extends Controller
     }
 
     /**
+     * Finds and displays a Post entity.
+     *
+     * @param int $id
+     * @return string
+     */
+    public function previewAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $post = $em->getRepository('VolleyFaceBundle:Post')->find($id);
+
+        if (!$post) {
+            throw $this->createNotFoundException('Unable to find Post entity.');
+        }
+
+        $category = $post->getCategory();
+
+        return $this->render('VolleyFaceBundle:Default:post.html.twig', ['category' => $category, 'post' => $post]);
+    }
+
+    /**
      * Displays a form to edit an existing Post entity.
      *
      */
@@ -161,6 +186,7 @@ class PostController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        /** @var Post $entity */
         $entity = $em->getRepository('VolleyFaceBundle:Post')->find($id);
 
         if (!$entity) {
@@ -174,6 +200,8 @@ class PostController extends Controller
         if ($editForm->isValid()) {
 
             $entity->upload();
+
+            $entity->setModifiedBy($this->getUser());
 
             $em->flush();
 
