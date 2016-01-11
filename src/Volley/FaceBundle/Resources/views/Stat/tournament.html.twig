@@ -1,4 +1,4 @@
-{% extends 'VolleyFaceBundle::layout.html.twig' %}
+{% extends '::layout.html.twig' %}
 
 {% block content %}
 
@@ -15,15 +15,32 @@
                     <th>Матчі</th>
                     <th>Перемоги</th>
                     <th>Поразки</th>
+                    <th>3-0</th>
+                    <th>3-1</th>
+                    <th>3-2</th>
+                    <th>2-3</th>
+                    <th>1-3</th>
+                    <th>0-3</th>
+                    <th>Партії</th>
+                    <th>М'ячі</th>
                     <th>Очки</th>
                     </thead>
-                    {% for row in table|reverse %}
+                    {% for row in table %}
                         <tr>
                             <td>{{ loop.index }}</td>
-                            <td><a href="{{ path('volley_face_stat_team',{'team_id':row['team'].id}) }}">{{ row['team'].name }}</a></td>
+                            {#<td><a href="{{ path('volley_face_stat_team',{'team_id':row['team'].id}) }}">{{ row['team'].name }}</a></td>#}
+                            <td>{{ row['team'].name }}</td>
                             <td>{{ row.games }}</td>
                             <td>{{ row.win }}</td>
                             <td>{{ row.loss }}</td>
+                            <td>{{ row.score30 }}</td>
+                            <td>{{ row.score31 }}</td>
+                            <td>{{ row.score32 }}</td>
+                            <td>{{ row.score23 }}</td>
+                            <td>{{ row.score13 }}</td>
+                            <td>{{ row.score03 }}</td>
+                            <td>{{ row.win_sets }}/{{ row.loss_sets }}</td>
+                            <td>{{ row.win_points }}/{{ row.loss_points }}</td>
                             <td>{{ row.points }}</td>
                         </tr>
                     {% endfor %}
@@ -43,25 +60,29 @@
                     </thead>
                     <tfoot></tfoot>
                     <tbody>
-                    {% for tour in tours|reverse %}
-                        <tr>
-                            <td colspan="100" class="text-center"><strong>{{ tour.name }}</strong></td>
-                        </tr>
-                        {% for game in tour.games|reverse %}
-                            {% set winnerTeamA = (game.scoreSetHome > game.scoreSetAway) %}
-                            {% set winnerTeamB = (game.scoreSetHome < game.scoreSetAway) %}
+                    {% for round in season.rounds %}
+                        {% for tour in round.tours %}
                             <tr>
-                                <td>{{ game.number }}</td>
-                                <td>{% if game.date is not null %} {{ game.date|date("d/m") }} {% endif %}</td>
-                                <td>{% if game.date is not null %} {{ game.date|date("H:i") }} {% endif %}</td>
-                                <td>{{ winnerTeamA ? "<strong>" : "" }}<a
-                                            href="{{ path('volley_face_stat_team',{'team_id':game.homeTeam.id}) }}"> {{ game.homeTeam.name }} </a>{{ winnerTeamA ? "</strong>" : "" }}
-                                </td>
-                                <td>{{ winnerTeamB ? "<strong>" : "" }}<a
-                                            href="{{ path('volley_face_stat_team',{'team_id':game.awayTeam.id}) }}"> {{ game.awayTeam.name }} </a>{{ winnerTeamB ? "</strong>" : "" }}
-                                </td>
-                                <td>{{ game.score }}</td>
+                                <td colspan="100" class="text-center"><strong>{{ tour.name }}</strong></td>
                             </tr>
+                            {% for game in tour.games %}
+                                {% set winnerTeamA = (game.scoreSetHome > game.scoreSetAway) %}
+                                {% set winnerTeamB = (game.scoreSetHome < game.scoreSetAway) %}
+                                <tr>
+                                    <td>{{ game.number }}</td>
+                                    <td>{% if game.date is not null %} {{ game.date|date("d/m") }} {% endif %}</td>
+                                    <td>{% if game.date is not null %} {{ game.date|date("H:i") }} {% endif %}</td>
+                                    <td>{{ winnerTeamA ? "<strong>" : "" }}
+                                        {#<a href="{{ path('volley_face_stat_team',{'team_id':game.homeTeam.id}) }}"> {{ game.homeTeam.name }} </a>{{ winnerTeamA ? "</strong>" : "" }}#}
+                                        {{ game.homeTeam.name }} {{ winnerTeamA ? "</strong>" : "" }}
+                                    </td>
+                                    <td>{{ winnerTeamB ? "<strong>" : "" }}
+                                        {#<a href="{{ path('volley_face_stat_team',{'team_id':game.awayTeam.id}) }}"> {{ game.awayTeam.name }} </a>{{ winnerTeamB ? "</strong>" : "" }}#}
+                                        {{ game.awayTeam.name }} {{ winnerTeamB ? "</strong>" : "" }}
+                                    </td>
+                                    <td>{{ game.score }}</td>
+                                </tr>
+                            {% endfor %}
                         {% endfor %}
                     {% endfor %}
                     </tbody>

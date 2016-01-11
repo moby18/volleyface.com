@@ -97,7 +97,7 @@ class Category
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -120,7 +120,7 @@ class Category
     /**
      * Get name
      *
-     * @return string
+     * @return string 
      */
     public function getName()
     {
@@ -175,7 +175,7 @@ class Category
     /**
      * Get parent
      *
-     * @return string
+     * @return string 
      */
     public function getParent()
     {
@@ -206,7 +206,7 @@ class Category
     /**
      * Get slug
      *
-     * @return string
+     * @return string 
      */
     public function getSlug()
     {
@@ -319,7 +319,7 @@ class Category
     /**
      * Get posts
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getPosts()
     {

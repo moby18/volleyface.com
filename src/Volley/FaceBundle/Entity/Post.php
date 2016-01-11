@@ -304,7 +304,7 @@ class Post
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -327,7 +327,7 @@ class Post
     /**
      * Get title
      *
-     * @return string
+     * @return string 
      */
     public function getTitle()
     {
@@ -350,7 +350,7 @@ class Post
     /**
      * Get text
      *
-     * @return string
+     * @return string 
      */
     public function getText()
     {
@@ -373,7 +373,7 @@ class Post
     /**
      * Get state
      *
-     * @return boolean
+     * @return boolean 
      */
     public function getState()
     {
@@ -396,7 +396,7 @@ class Post
     /**
      * Get category
      *
-     * @return string
+     * @return string 
      */
     public function getCategory()
     {
@@ -461,7 +461,7 @@ class Post
     /**
      * Get source
      *
-     * @return string
+     * @return string 
      */
     public function getSource()
     {
@@ -484,7 +484,7 @@ class Post
     /**
      * Get ordering
      *
-     * @return string
+     * @return string 
      */
     public function getOrdering()
     {
@@ -507,7 +507,7 @@ class Post
     /**
      * Get metakey
      *
-     * @return string
+     * @return string 
      */
     public function getMetakey()
     {
@@ -530,7 +530,7 @@ class Post
     /**
      * Get metadescr
      *
-     * @return string
+     * @return string 
      */
     public function getMetadescr()
     {
@@ -553,7 +553,7 @@ class Post
     /**
      * Get hits
      *
-     * @return integer
+     * @return integer 
      */
     public function getHits()
     {
@@ -576,7 +576,7 @@ class Post
     /**
      * Get metadata
      *
-     * @return string
+     * @return string 
      */
     public function getMetadata()
     {
@@ -599,7 +599,7 @@ class Post
     /**
      * Get featured
      *
-     * @return boolean
+     * @return boolean 
      */
     public function getFeatured()
     {
@@ -622,7 +622,7 @@ class Post
     /**
      * Get language
      *
-     * @return string
+     * @return string 
      */
     public function getLanguage()
     {
@@ -645,7 +645,7 @@ class Post
     /**
      * Get slug
      *
-     * @return string
+     * @return string 
      */
     public function getSlug()
     {
@@ -668,7 +668,7 @@ class Post
     /**
      * Get created
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getCreated()
     {
@@ -707,7 +707,7 @@ class Post
     /**
      * Get published
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getPublished()
     {
@@ -730,7 +730,7 @@ class Post
     /**
      * Get content
      *
-     * @return string
+     * @return string 
      */
     public function getContent()
     {
@@ -760,7 +760,7 @@ class Post
     /**
      * Get path
      *
-     * @return string
+     * @return string 
      */
     public function getPath()
     {
