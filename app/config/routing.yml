@@ -7,10 +7,6 @@ volley_user:
     resource: "@VolleyUserBundle/Resources/config/routing.yml"
     prefix:   /
 
-volley_face:
-    resource: "@VolleyFaceBundle/Resources/config/routing.yml"
-    prefix:   /
-
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
@@ -29,3 +25,8 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
+
+# ALWAYS AT BOTTOM, BECAUSE CATEGORY SLUG FROM /
+volley_face:
+    resource: "@VolleyFaceBundle/Resources/config/routing.yml"
+    prefix:   /
