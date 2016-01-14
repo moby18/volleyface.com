@@ -85,7 +85,7 @@ class Post
     private $published;
 
     /**
-     * @Doctrine\ORM\Mapping\Column(type="text")
+     * @Doctrine\ORM\Mapping\Column(type="text", nullable=true)
      */
     private $content;
 
