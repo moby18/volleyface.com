@@ -2,7 +2,6 @@
 
 namespace Volley\FaceBundle\Controller;
 
-use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -22,10 +21,9 @@ class PostController extends Controller
      */
     public function indexAction()
     {
-        /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('VolleyFaceBundle:Post')->findBy([],['published'=>'DESC','id'=>'DESC']);
+        $entities = $em->getRepository('VolleyFaceBundle:Post')->findAll();
 
         return $this->render('VolleyFaceBundle:Post:index.html.twig', array(
             'entities' => $entities,
@@ -86,6 +84,7 @@ class PostController extends Controller
     public function newAction()
     {
         $entity = new Post();
+        $entity->setPublished(new \DateTime());
         $form   = $this->createCreateForm($entity);
 
         return $this->render('VolleyFaceBundle:Post:new.html.twig', array(
