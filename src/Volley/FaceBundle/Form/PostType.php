@@ -19,6 +19,7 @@ class PostType extends AbstractType
             ->add('title')
 //            ->add('slug')
             ->add('content', 'textarea', [
+                'required' => false,
                 'label' => 'Short content'
             ])
             ->add('text', 'textarea', [
