@@ -21,7 +21,7 @@
                 {#<th>Created</th>#}
                 <th>Published</th>
                 {#<th>Content</th>#}
-                {#<th>Createdby</th>#}
+                <th>Createdby</th>
                 {#<th>Modifiedby</th>#}
                 {#<th>Source</th>#}
                 {#<th>Ordering</th>#}
@@ -47,7 +47,7 @@
                     {#<td>{% if entity.created %}{{ entity.created|date('Y-m-d H:i:s') }}{% endif %}</td>#}
                     <td>{% if entity.published %}{{ entity.published|date('Y-m-d H:i:s') }}{% endif %}</td>
                     {#<td>{{ entity.content }}</td>#}
-                    {#<td>{{ entity.createdBy }}</td>#}
+                    <td>{{ entity.createdBy }}</td>
                     {#<td>{{ entity.modifiedBy }}</td>#}
                     {#<td>{{ entity.source }}</td>#}
                     {#<td>{{ entity.ordering }}</td>#}
