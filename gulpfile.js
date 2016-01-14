@@ -12,7 +12,8 @@ gulp.task('style', function () {
         'src/Volley/FaceBundle/Resources/public/bower_components/bootstrap/dist/css/bootstrap.css',
         'src/Volley/FaceBundle/Resources/public/bower_components/components-font-awesome/css/font-awesome.min.css',
         'src/Volley/FaceBundle/Resources/public/css/animations.css',
-        'src/Volley/FaceBundle/Resources/public/css/styles.css'
+        'src/Volley/FaceBundle/Resources/public/css/styles.css',
+        'src/Volley/FaceBundle/Resources/public/bower_components/lightbox2/dist/css/lightbox.min.css'
     ];
     gulp.src(source)
         //.pipe(sourcemaps.init())
@@ -59,7 +60,8 @@ gulp.task('script', function () {
         'src/Volley/FaceBundle/Resources/public/bower_components/bootstrap/dist/js/bootstrap.js',
         //'src/Volley/FaceBundle/Resources/public/bower_components/bootstrap/js/dropdown.js',
         'src/Volley/FaceBundle/Resources/public/js/custom/menu.js',
-        'src/Volley/FaceBundle/Resources/public/js/custom/game.js'
+        'src/Volley/FaceBundle/Resources/public/js/custom/game.js',
+        'src/Volley/FaceBundle/Resources/public/bower_components/lightbox2/dist/js/lightbox.min.js'
     ];
     gulp.src(source)
         //.pipe(sourcemaps.init())
@@ -127,17 +129,24 @@ gulp.task('fonts', function () {
         .pipe(gulp.dest('web/fonts/'))
 });
 
+gulp.task('images', function () {
+    return gulp.src([
+            'src/Volley/FaceBundle/Resources/public/bower_components/lightbox2/dist/images/*'
+        ])
+        .pipe(gulp.dest('web/images/'))
+});
+
 gulp.task('assets_install', shell.task([
     'app/console assets:install'
 ]));
 
 gulp.task('clean', function () {
-    return gulp.src(['web/css/*', 'web/js/*', 'web/images/*', 'web/fonts/*'/*, 'web/bundles/*'*/])
+    return gulp.src(['web/css/*', 'web/js/*', 'web/images/*', 'web/fonts/*','web/images/*'/*, 'web/bundles/*'*/])
         .pipe(clean());
 });
 
 gulp.task('default', ['clean'], function() {
-    gulp.start(['fonts', 'style', 'style_admin', 'style_ie', 'script', 'script_admin', 'script_ie', 'script_install']);
+    gulp.start(['fonts', 'style', 'style_admin', 'style_ie', 'script', 'script_admin', 'script_ie', 'script_install','images']);
 });
 
 gulp.task('front', [], function() {
