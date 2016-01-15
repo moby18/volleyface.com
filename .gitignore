@@ -4,6 +4,7 @@
 /web/js
 /web/css
 /web/fonts
+/web/images
 /web/.htpasswd
 /app/bootstrap.php.cache
 /app/cache/*

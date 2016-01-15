@@ -12,8 +12,7 @@ gulp.task('style', function () {
         'src/Volley/FaceBundle/Resources/public/bower_components/bootstrap/dist/css/bootstrap.css',
         'src/Volley/FaceBundle/Resources/public/bower_components/components-font-awesome/css/font-awesome.min.css',
         'src/Volley/FaceBundle/Resources/public/css/animations.css',
-        'src/Volley/FaceBundle/Resources/public/css/styles.css',
-        'src/Volley/FaceBundle/Resources/public/bower_components/lightbox2/dist/css/lightbox.min.css'
+        'src/Volley/FaceBundle/Resources/public/css/styles.css'
     ];
     gulp.src(source)
         //.pipe(sourcemaps.init())
@@ -61,7 +60,7 @@ gulp.task('script', function () {
         //'src/Volley/FaceBundle/Resources/public/bower_components/bootstrap/js/dropdown.js',
         'src/Volley/FaceBundle/Resources/public/js/custom/menu.js',
         'src/Volley/FaceBundle/Resources/public/js/custom/game.js',
-        'src/Volley/FaceBundle/Resources/public/bower_components/lightbox2/dist/js/lightbox.min.js'
+        'src/Volley/FaceBundle/Resources/public/js/custom/gallery.js'
     ];
     gulp.src(source)
         //.pipe(sourcemaps.init())
@@ -131,7 +130,7 @@ gulp.task('fonts', function () {
 
 gulp.task('images', function () {
     return gulp.src([
-            'src/Volley/FaceBundle/Resources/public/bower_components/lightbox2/dist/images/*'
+            ''
         ])
         .pipe(gulp.dest('web/images/'))
 });
