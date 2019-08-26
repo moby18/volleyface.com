@@ -100,7 +100,7 @@ stfalcon_tinymce:
     tinymce_buttons:
         stfalcon: # Id of the first button
             title: "Stfalcon"
-            image: "http://stfalcon.com/favicon.ico"
+            image: "https://stfalcon.com/favicon.ico"
     external_plugins:
         moxiemanager:
             url: "asset[bundles/volleyface/moxiemanager/editor_plugin.js]"
