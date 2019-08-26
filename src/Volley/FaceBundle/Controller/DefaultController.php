@@ -130,14 +130,15 @@ class DefaultController extends Controller
         /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
         // slides
-        $slides = $em->getRepository('VolleyFaceBundle:Slide')->findBy([], null, 5);
+        // $slides = $em->getRepository('VolleyFaceBundle:Slide')->findBy([], null, 5);
         // news
         $category = $em->getRepository('VolleyFaceBundle:Category')->findOneBy(['parent' => null]);
         $news = $em->getRepository('VolleyFaceBundle:Post')->findByCategory($category, 10);
-        return [
-            'slides' => $slides,
-            'news' => $news
-        ];
+
+	    return [
+		    'slides' => [],
+		    'news'   => $news
+	    ];
     }
 
     /**
