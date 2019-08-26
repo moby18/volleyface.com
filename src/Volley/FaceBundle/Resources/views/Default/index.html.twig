@@ -46,3 +46,13 @@
     <!-- /.section -->
 
 {% endblock %}
+
+{% block styles %}
+    {{ parent() }}
+    <link href='{{ asset('bundles/volleyface/bower_components/fancybox/source/jquery.fancybox.css') }}' rel="stylesheet" type='text/css'>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script  type="text/javascript" src="{{ asset('bundles/volleyface/bower_components/fancybox/source/jquery.fancybox.js') }}"></script>
+{% endblock %}
