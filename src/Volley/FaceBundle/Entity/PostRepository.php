@@ -44,7 +44,7 @@ class PostRepository extends EntityRepository
             ->setParameter('slug',$slug)
             ->andWhere('p.state > 0')
             ->andWhere('p.published <= :date')
-            ->setParameter('date','now()')
+            ->setParameter('date', new \DateTime())
             ->getQuery()
             ->getOneOrNullResult();
     }
